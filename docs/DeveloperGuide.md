@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `student delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -72,7 +72,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. The classes `PersonListPanel`, `SessionListPanel`, and `AttendanceRecordListPanel` inherit from the abstract `ListPanel` class which captures the commonalities of a panel in the GUI that displays a list of items. Each item in the list is represented as a card (e.g. `SessionCard`). All these, including the `MainWindow` and `ListPanel`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2425S2-CS2103T-T17-3/tp/tree/master/src/main/java/tutorly/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-T17-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -81,7 +81,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person`, `Session`, and `AttendanceRecord` objects residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -229,13 +229,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -365,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Tutor requests to update a student record by providing the student’s Identifier.
+1. Tutor requests to update a student record by providing the student’s ID.
 2. Tutorly retrieves the student’s existing profile.
 3. Tutor provides updated details (e.g., name, grade, subject, session frequency, or notes).
 4. Tutorly validates the input.
@@ -375,8 +375,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 2a. The student Identifier does not exist.
-    - 2a1. Tutorly displays an error message: “Invalid student Identifier.”
+- 2a. The student ID does not exist.
+    - 2a1. Tutorly displays an error message: “Invalid student ID.”
     - Use case ends.
 
 - 3a. Tutor does not provide any update parameters.
@@ -390,11 +390,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: Delete a student record**
+**Use case: Delete or archive a student record**
 
 **MSS**
 
-1. Tutor requests to manage a student record by providing the student’s Identifier and selecting an action.
+1. Tutor requests to manage a student record by providing the student’s ID and selecting an action (`archive` or `delete`).
 2. Tutorly retrieves the student record.
 3. Tutorly validates the request and performs the action.
 4. Tutorly confirms the success of the operation.
@@ -403,7 +403,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 2a. The student Identifier does not exist.
+- 2a. The student ID does not exist.
     - 2a1. Tutorly displays an error message: “Student record not found.”
     - Use case ends.
 
@@ -421,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Tutor requests to mark a session as completed by providing the student’s Identifier, date, and attendance status.
+1. Tutor requests to mark a session as completed by providing the student’s ID, date, and attendance status.
 2. Tutorly validates the input.
 3. Tutorly records the session as completed and logs the attendance.
 4. Tutorly confirms success.
@@ -430,8 +430,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 2a. The student Identifier does not exist.
-    - 2a1. Tutorly displays an error message: “Invalid student Identifier.”
+- 2a. The student ID does not exist.
+    - 2a1. Tutorly displays an error message: “Invalid student ID.”
     - Use case ends.
 
 - 2b. The provided date is in an invalid format.
@@ -466,60 +466,86 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+### Launch and Shutdown
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+1. **Initial Launch**
+    1. Download the jar file and copy it into an empty folder.
+    2. Double-click the jar file.
+        - Expected: Shows the GUI with a set of sample contacts. The window size may not be optimal.
 
-</div>
+2. **Saving Window Preferences**
+    1. Resize the window to an optimal size. Move the window to a different location. Close the window.
+    2. Re-launch the app by double-clicking the jar file.
+        - Expected: The most recent window size and location are retained.
 
-### Launch and shutdown
+### Deleting a Person
 
-1. Initial launch
+1. **Deleting a Person While All Persons Are Being Shown**
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    2. Test case: `delete 1`
+        - Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message. Timestamp in the status bar is updated.
+    3. Test case: `delete 0`
+        - Expected: No person is deleted. Error details are shown in the status message. Status bar remains the same.
+    4. Other incorrect delete commands to try: `delete`, `delete x`(where x is a number that is larger than the list size)
+        - Expected: Similar to previous.
 
-   1. Download the jar file and copy into an empty folder
+### Saving Data
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+1. **Dealing with Missing/Corrupted Data Files**
+    1. Simulate a missing/corrupted file by renaming or deleting the data file.
+    2. Launch the application.
+        - Expected: Application should handle the error gracefully, possibly by creating a new data file or showing an error message.
 
-1. Saving window preferences
+### Adding a Student Record
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+1. **Adding a New Student**
+    1. Test case: Add a new student with valid details. `student add n/John Doe`
+        - Expected: Student is added successfully, and a confirmation message is shown.
+    2. Test case: Add a new student with invalid details (e.g., missing required fields `student add p/12345678`).
+        - Expected: Error message is shown, prompting for correct input.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+### Searching for a Student Record
 
-1. _{ more test cases …​ }_
+1. **Search for a Student**
+    1. Test case: Search for a student by name. `student search n/John`
+        - Expected: Matching student profiles are displayed.
+    2. Test case: Search with a query that has no matches. `student search n/NonExistent`
+        - Expected: "0 students listed!" message is shown.
 
-### Deleting a person
+### Editing a Student
 
-1. Deleting a person while all persons are being shown
+1. **Editing a Student Record**
+    1. Test case: Edit a student’s details with valid input. `student edit 1 n/John Smith`
+        - Expected: Student details are updated successfully, and a confirmation message is shown.
+    2. Test case: Edit a student’s details with invalid input. `student edit x n/John Smith`(x is a number larger than the list size)
+        - Expected: Error message "Student not found!" is shown.
+    3. Test case: Edit a student’s details with missing required fields. `student edit 1 n/`
+        - Expected: Error message is shown, prompting for correct input.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Marking attendance for a session
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. **Marking attendance for a session**
+    1. Test case: Mark a session with valid input. `session mark 1 ses/1`
+        - Expected: Attendance is marked successfully, and a confirmation message is shown.
+    2. Test case: Mark a session as completed with invalid input (e.g., invalid session id). `session mark 1 ses/x`(x is a number larger than the list size)
+        - Expected: Error message is shown, prompting for correct input.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+### Undo/Redo Feature
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+1. **Undo/Redo Operations**
+    1. Test case: Perform an action (e.g., add a student), then undo the action.
+        - Expected: The action is undone, and the previous state is restored.
+    2. Test case: Redo the undone action.
+        - Expected: The action is redone, and the state is updated accordingly.
 
-1. _{ more test cases …​ }_
+### Error Handling
 
-### Saving data
+1. **Invalid Commands**
+    1. Test case: Enter an invalid command.
+        - Expected: Error message is shown, indicating the command is not recognized/unknown.
 
-1. Dealing with missing/corrupted data files
+2. **System Errors**
+    1. Test case: Simulate a system error (e.g., by corrupting a data file).
+        - Expected: Application handles the error gracefully, deleting the added corruptions
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Planned Enhancements**
-
-1. A `redo` command to undo an `undo` command.
-2. `student search` via other fields including **tags**.
-3. `class` management commands that handles adding of **multiple** sessions and **mass** enrolling/marking of attendance for students.
-4. Viewing sessions each student is enrolled in via the `students` tab.
+These instructions provide a starting point for testers to work on; testers are expected to do more exploratory testing.
