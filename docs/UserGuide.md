@@ -156,7 +156,7 @@ After closing and re-opening the app, all previous commands will be forgotten an
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The main window will automatically switch to the tab which shows the results of the command that has been executed.
 
-Commands that updates the data will also clear any filters from previous `search` commands to view what has been updated. 
+Commands that update the data will also clear any filters from previous `search` commands to view what has been updated. 
 This [section](#undoing-a-command-undo) includes which commands will do so.
 </div>
 
