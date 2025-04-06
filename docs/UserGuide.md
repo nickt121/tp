@@ -31,29 +31,7 @@ If you prefer using your keyboard over clicking through menus, Tutorly allows yo
 
 6. **Run Tutorly**: Type `java -jar tutorly.jar` and press **Enter**. This will start the application. A GUI similar to the below should appear in a few seconds, containing some sample data.<br>
    ![Ui](images/Ui.png)
-
-7. **Execute a command**: Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `student list` : Lists all students.
-
-   * `student add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the app.
-
-   * `student delete 3` : Deletes the student with the ID 3.
-
-   * `session list` : List all sessions.
-
-   * `clear` : Deletes all students and sessions.
-
-   * `exit` : Exits the app.
-
-8. Refer to the [Features](#features) below for details of each command.
-
-[Back to top :arrow_up:](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-
-## UI Layout
+7. **UI Layout**: Feel free to take a look at the following images for a better understanding of the layout!
 
 ### Students Tab
 
@@ -66,6 +44,29 @@ If you prefer using your keyboard over clicking through menus, Tutorly allows yo
 ### Sessions Tab
 
 ![sessions tab](images/SessionsTab.png)
+
+### Execute a command
+
+Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+Some example commands you can try:
+
+* `student list` : Lists all students.
+
+* `student add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the app.
+
+* `student delete 3` : Deletes the student with the ID 3.
+
+* `session list` : List all sessions.
+
+* `clear` : Deletes all students and sessions.
+
+* `exit` : Exits the app.
+
+Refer to the [Features](#features) below for details of each command.
+
+[Back to top :arrow_up:](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
@@ -127,23 +128,24 @@ Format: `exit`
 
 #### Undoing a command: `undo`
 
-Undoes the last successfully executed command.
+Undoes the last successfully executed command that has updated the data.
 
-Commands that can be undone:
+Commands that update data and are thus undoable:
 * The `clear` command.
 * The `add`, `delete` and `edit` commands for [student](#student-management-student-action) and [session](#session-management-session-action).
 * The `enrol`, `unenrol`, `mark`, `unmark` and `feedback` commands for [session](#session-management-session-action).
 
 Format: `undo`
 
-* This command will undo the **latest possible undoable** command listed above.
-* Commands that are not successfully executed due to errors will not be undone.
-* Closing the app will also mean that previously ran commands will be **permanent** and no longer undoable.
-
 Examples:
 * `session delete` followed by `undo` will undo the delete command by adding the session back.
 * If the following commands were ran in order: `student edit`, `student add`, `student search`, `help`, running `undo` will undo the `student add` command.
-* Running `undo` after closing and re-opening the app will not undo any previous commands before the app was closed.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Commands that are not successfully executed due to errors will not be undone.
+
+After closing and re-opening the app, all previous commands will be forgotten and running `undo` will not undo any previous commands before the app was closed.
+</div>
 
 [Back to top :arrow_up:](#table-of-contents)
 
@@ -153,6 +155,9 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The main window will automatically switch to the tab which shows the results of the command that has been executed.
+
+Commands that updates the data will also clear any filters from previous `search` commands to view what has been updated. 
+This [section](#undoing-a-command-undo) includes which commands will do so.
 </div>
 
 #### Viewing students tab: `student`
@@ -211,16 +216,19 @@ Adds a student to the app.
 
 Format: `student add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEMO] [t/TAG]…​`
 
-* Besides IDs, names are also used to uniquely identify students. Thus, duplicate students with the same name are not allowed.
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0)
+A student can have any number of tags (including 0). Refer to [here](#parameter-summary) for the expected formats of the parameters.
 </div>
 
 Examples:
 * `student add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/loves Math`
 * `student add n/Mary Jane t/olevels e/maryjane@example.com p/81234567 t/priority`
-* `student add n/Mary Jane` when a student with the name `Mary Jane` already exists will show an error.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Besides IDs, names are also used to uniquely identify students. Thus, duplicate students with the same name are not allowed.
+
+Running `student add n/Mary Jane` when a student with the name `Mary Jane` already exists will show an error as it is considered a duplicate student.
+</div>
 
 Example output:
 
@@ -244,16 +252,20 @@ Edits an existing student with the specified [STUDENT_IDENTIFIER](#glossary).
 
 Format: `student edit STUDENT_IDENTIFIER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEMO] [t/TAG]…​`
 
-* At least one of the optional parameters must be provided.
+* At least one of the optional [parameters](#parameter-summary) must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
-* Besides IDs, names are also used to uniquely identify students. Thus, duplicate students with the same name are not allowed.
 
 Examples:
 * `student edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of John Doe to be `91234567` and `johndoe@example.com` respectively.
 * `student edit 2 n/Betsy Crower t/` Edits the name of the student with an ID of 2 to be `Betsy Crower` and clears all existing tags.
-* `student edit 3 n/Betsy Crower` when another student named `Betsy Crower` already exists will show an error.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Besides IDs, names are also used to uniquely identify students. Thus, duplicate students with the same name are not allowed.
+
+Running `student edit 3 n/Betsy Crower` when another student named `Betsy Crower` already exists will show an error as it is considered a duplicate student.
+</div>
 
 Example output:
 
@@ -269,11 +281,15 @@ Finds students whose names or phone numbers contain any of the given keywords, o
 
 Format: `student search [ses/SESSION_ID] [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The keywords are case-insensitive and order does not matter. e.g. `hans bo` will match `Bo Hans`
 * Incomplete words will still be matched e.g. `Han` will match `Hans` or `8765` will match `91238765`
-* Students matching at least one keyword or are enrolled to the session will be returned.
-  e.g. `ses/1 n/Hans Bo` will return `Hans Gruber`, `Bo Yang` and other students who attended session with the id 1.
+* Students matching at least one keyword **or** are enrolled to the session will be returned.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+`SESSION_ID` only accepts one valid number that corresponds with an existing session's ID.
+
+This will be updated in future versions to allow the searching of multiple IDs.
+</div>
 
 Examples:
 * `student search n/John p/9123 8765` returns `johnathan`, `John Doe` and other students with a phone number that contains `9123` or `8765`.
@@ -312,7 +328,7 @@ Adds a session to the app.
 
 Format: `session add t/TIMESLOT sub/SUBJECT`
 
-`TIMESLOT` must be of the format: `dd MMM yyyy HH:mm-HH:mm` for sessions within a day, or `dd MMM yyyy HH:mm-dd MMM yyyy HH:mm` for sessions spanning across multiple days.
+Refer to [here](#parameter-summary) for the expected format of the parameters.
 
 Examples:
 * `session add t/30 Mar 2025 11:30-13:30 sub/Math` adds a session with the subject `Math` on 30 March 2025 from 11.30am to 13.30pm.
@@ -340,9 +356,8 @@ Edits an existing session.
 
 Format: `session edit SESSION_ID [t/TIMESLOT] [sub/SUBJECT]`
 * Edits the session with the `SESSION_ID`.
-* At least one of the optional parameters must be provided.
+* At least one of the optional [parameters](#parameter-summary) must be provided.
 * Existing values will be updated to the input values.
-* `TIMESLOT` must be of the format: `dd MMM yyyy HH:mm-HH:mm` for sessions within a day, or `dd MMM yyyy HH:mm-dd MMM yyyy HH:mm` for sessions spanning across multiple days.
 
 Examples:
 *  `session edit 3 t/11 Apr 2025 11:30-13:30` Edits the date of the session with the ID 3 to be on 11 April 2025 from 11.30am to 1.30pm.
@@ -358,11 +373,9 @@ Finds sessions on a particular date or on a subject which matches any of the giv
 
 Format: `session search [d/DATE] [sub/SUBJECT_KEYWORDS]`
 
-* The keyword search is case-insensitive. e.g `math` will match `Math`
-* The order of the keywords does not matter. e.g. `Math Eng` will match `Eng Math`
+* The keywords and case-insensitive and order does not matter. e.g. `math eng` will match `Eng Math`
 * Incomplete words will still be matched e.g. `Mat` will match `Math`
 * Sessions whose timeslots contain the given date or have a subject that match at least one keyword will be returned.
-  e.g. `sub/Mat Eng` will return sessions with subjects `Math`, `English`
 
 Examples:
 * `session search d/22 May 2025` returns sessions with timeslots that include 22 May 2025.
@@ -390,7 +403,7 @@ Running the [undo](#undoing-a-command-undo) command after `session delete` adds 
 
 #### Enrolling a student to a session: `enrol`
 
-Enrols a student with the specified [STUDENT_IDENTIFIER](#glossary) to a session.
+Enrols a student with the specified [STUDENT_IDENTIFIER](#glossary) to a specific session.
 
 Format: `session enrol STUDENT_IDENTIFIER ses/SESSION_ID`
 
@@ -543,6 +556,7 @@ Furthermore, certain edits can cause the Tutorly to behave in unexpected ways (e
 | TAG       | -                                                                                       | Max: 20            | A-Levels                         |
 | TIMESLOT  | Format: `dd MMM yyyy HH:mm-HH:mm` or `dd MMM yyyy HH:mm-dd MMM yyyy HH:mm`              | -                  | 11 Apr 2025 16:00-18:00          |
 
+[Back to top :arrow_up:](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
