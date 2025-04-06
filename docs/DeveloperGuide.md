@@ -535,10 +535,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Saving Data
 
-1. **Dealing with Missing/Corrupted Data Files**
-    1. Simulate a missing/corrupted file by renaming or deleting the data file.
+1. **Dealing with Missing Data Files**
+    1. Simulate a missing file by renaming or deleting the data file.
     2. Launch the application.
-        - Expected: Application should handle the error gracefully, by creating a new data file containing the sample data.
+        - Expected: Application should handle the error gracefully, by creating a new data file containing the sample data once any command is successfully executed. (For student/session add commands, it will also include the added student/session.)
+
+2. **Dealing with Corrupted Data Files**
+    1. Simulate a corrupted file by modifying the data file to be unreadable.
+    2. Launch the application.
+        - Expected: Application should clear the corrupted data file and create a empty data file once any command is successfully executed.
 
 ### Adding a Student
 
