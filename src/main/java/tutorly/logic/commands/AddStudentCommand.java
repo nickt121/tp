@@ -70,6 +70,7 @@ public class AddStudentCommand extends StudentCommand {
             throw new CommandException(MESSAGE_LIMIT_REACHED);
         }
 
+        model.updateFilteredPersonList(Model.FILTER_SHOW_ALL_PERSONS);
         return new CommandResult.Builder(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)))
                 .withTab(Tab.student(toAdd))
                 .withReverseCommand(new DeleteStudentCommand(new Identity(toAdd.getId())))
