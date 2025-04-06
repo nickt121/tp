@@ -109,7 +109,7 @@ public class EditStudentCommand extends StudentCommand {
         return new CommandResult.Builder(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)))
                 .withTab(Tab.student(editedPerson))
                 .withReverseCommand(new EditStudentCommand(
-                        identity, EditPersonDescriptor.fromPerson(personToEdit.get())))
+                        new Identity(personToEdit.get().getId()), EditPersonDescriptor.fromPerson(personToEdit.get())))
                 .build();
     }
 
