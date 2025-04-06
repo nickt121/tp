@@ -1,7 +1,5 @@
 package tutorly.logic.commands;
 
-import java.util.Optional;
-
 import tutorly.logic.Messages;
 import tutorly.logic.commands.exceptions.CommandException;
 import tutorly.model.Model;
@@ -20,28 +18,20 @@ public class ViewSessionCommand extends SessionCommand {
             + "\nParameters: SESSION_ID"
             + "\nExample: " + COMMAND_STRING + " 1";
 
-    private final Optional<Integer> sessionId;
+    private final Integer sessionId;
 
     public ViewSessionCommand(int sessionId) {
-        this.sessionId = Optional.of(sessionId);
-    }
-
-    public ViewSessionCommand() {
-        this.sessionId = Optional.empty();
+        this.sessionId = sessionId;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (sessionId.isPresent()) {
-            Session session = model.getSessionById(sessionId.get())
-                    .orElseThrow(() -> new CommandException(Messages.MESSAGE_SESSION_NOT_FOUND));
+        Session session = model.getSessionById(sessionId)
+                .orElseThrow(() -> new CommandException(Messages.MESSAGE_SESSION_NOT_FOUND));
 
-            return new CommandResult.Builder(String.format(Messages.MESSAGE_SESSION_SHOWN, Messages.format(session)))
-                    .withTab(Tab.session(session))
-                    .build();
-        }
-
-        return new CommandResult.Builder(Messages.MESSAGE_SESSIONS_SHOWN).withTab(Tab.session()).build();
+        return new CommandResult.Builder(String.format(Messages.MESSAGE_SESSION_SHOWN, Messages.format(session)))
+                .withTab(Tab.session(session))
+                .build();
     }
 
 }
