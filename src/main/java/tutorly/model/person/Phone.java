@@ -12,8 +12,8 @@ public class Phone {
     public static final int MIN_LENGTH = 3;
     public static final int MAX_LENGTH = 25;
 
-    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers, spaces, hyphens, "
-            + "and an optional country code prefix. "
+    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should not be blank. It should only contain "
+            + "numbers, spaces, hyphens, and an optional country code prefix. "
             + "It should be between " + MIN_LENGTH + " to " + MAX_LENGTH + " characters long.";
 
     public static final String VALIDATION_REGEX = "(\\+\\d{1,3}( )?)?[\\d -]+";
