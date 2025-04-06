@@ -613,7 +613,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Undo Feature
 
-1. **Undo/Redo Operations**
+1. **Undo Operations**
     1. Test case: Perform an action (e.g., add a student), then undo the action.
         - Expected: The action is undone, and the previous state is restored. There is also a confirmation message shown.
 
