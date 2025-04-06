@@ -262,7 +262,7 @@ public class ParserUtil {
         LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
         LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
 
-        if (startDateTime.isAfter(endDateTime)) {
+        if (!endDateTime.isAfter(startDateTime)) {
             throw new ParseException(Timeslot.MESSAGE_END_BEFORE_START_DATETIME);
         }
 

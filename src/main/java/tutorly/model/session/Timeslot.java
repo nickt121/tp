@@ -12,22 +12,20 @@ import tutorly.commons.util.ToStringBuilder;
  */
 public class Timeslot {
 
-    public static final String MESSAGE_END_BEFORE_START_DATETIME = "Start datetime must not be after end datetime.";
+    public static final String MESSAGE_END_BEFORE_START_DATETIME = "End datetime must be after start datetime.";
 
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
 
     /**
-     * Constructs a Timeslot with the given start and end datetimes. Start datetime must not be after end datetime.
-     * We allow the start and end datetimes to be the same in the event the tutor does not know how long the session
-     * will last.
+     * Constructs a Timeslot with the given start and end datetimes. End datetime must be after start datetime.
      *
      * @param startTime The start datetime of the timeslot.
      * @param endTime   The end datetime of the timeslot.
      */
     public Timeslot(LocalDateTime startTime, LocalDateTime endTime) {
         requireAllNonNull(startTime, endTime);
-        if (startTime.isAfter(endTime)) {
+        if (!endTime.isAfter(startTime)) {
             throw new IllegalArgumentException(MESSAGE_END_BEFORE_START_DATETIME);
         }
 
