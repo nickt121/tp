@@ -553,7 +553,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. **Deleting a Student**
     Prerequisite: The student must exist in the list.
     1. Test case: `student delete 1`
-        - Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message. Timestamp in the status bar is updated.
+        - Expected: First contact is deleted from the list. Details of the deleted contact are shown.
     2. Test case: `student delete 0`
         - Expected: No student is deleted. Error details are shown in the status message.
     3. Other incorrect delete commands to try: `student delete`, `student delete x`(where x is a number that is larger than the list size)
@@ -615,9 +615,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. **Undo/Redo Operations**
     1. Test case: Perform an action (e.g., add a student), then undo the action.
-        - Expected: The action is undone, and the previous state is restored.
-    2. Test case: Redo the undone action.
-        - Expected: The action is redone, and the state is updated accordingly.
+        - Expected: The action is undone, and the previous state is restored. There is also a confirmation message shown.
 
 ### Error Handling
 
