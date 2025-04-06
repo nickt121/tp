@@ -526,7 +526,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. **Initial Launch**
     1. Download the jar file and copy it into an empty folder.
     2. Double-click the jar file.
-        - Expected: Shows the GUI with a set of sample contacts. The window size may not be optimal.
+        - Expected: Shows the GUI with a set of sample students. The window size may not be optimal.
 
 2. **Saving Window Preferences**
     1. Resize the window to an optimal size. Move the window to a different location. Close the window.
@@ -553,7 +553,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. **Deleting a Student**
     Prerequisite: The student must exist in the list.
     1. Test case: `student delete 1`
-        - Expected: First contact is deleted from the list. Details of the deleted contact are shown.
+        - Expected: Student with id 1 is deleted from the list. Details of the deleted students are shown.
     2. Test case: `student delete 0`
         - Expected: No student is deleted. Error details are shown in the status message.
     3. Other incorrect delete commands to try: `student delete`, `student delete x`(where x is a number that is larger than the list size)
