@@ -71,7 +71,8 @@ public class UnenrolSessionCommand extends SessionCommand {
         return new CommandResult.Builder(
                 String.format(MESSAGE_SUCCESS, person.get().getName().fullName, Messages.format(session.get())))
                 .withTab(Tab.session(session.get()))
-                .withReverseCommand(new EnrolSessionCommand(identity, sessionId, record.get().getAttendance()))
+                .withReverseCommand(new EnrolSessionCommand(
+                        identity, sessionId, record.get().getAttendance(), record.get().getFeedback()))
                 .build();
     }
 

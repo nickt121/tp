@@ -38,23 +38,26 @@ public class EnrolSessionCommand extends SessionCommand {
     private final Identity identity;
     private final int sessionId;
     private final boolean presence;
+    private final Feedback feedback;
 
     /**
      * Creates an EnrolSessionCommand for the given {@code Person} to the given {@code Session} with the given
-     * {@code presence} status.
+     * {@code presence} status and {@code feedback}.
      */
-    public EnrolSessionCommand(Identity identity, int sessionId, boolean presence) {
+    public EnrolSessionCommand(Identity identity, int sessionId, boolean presence, Feedback feedback) {
         requireNonNull(identity);
+        requireNonNull(feedback);
         this.identity = identity;
         this.sessionId = sessionId;
         this.presence = presence;
+        this.feedback = feedback;
     }
 
     /**
-     * Creates an EnrolSessionCommand for the given {@code Person} to the given {@code Session} with default presence.
+     * Creates an EnrolSessionCommand for the given {@code Person} to the given {@code Session}.
      */
     public EnrolSessionCommand(Identity identity, int sessionId) {
-        this(identity, sessionId, DEFAULT_PRESENCE);
+        this(identity, sessionId, DEFAULT_PRESENCE, Feedback.empty());
     }
 
     @Override
@@ -71,7 +74,7 @@ public class EnrolSessionCommand extends SessionCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_ID);
         }
 
-        AttendanceRecord record = new AttendanceRecord(person.get().getId(), sessionId, presence, Feedback.empty());
+        AttendanceRecord record = new AttendanceRecord(person.get().getId(), sessionId, presence, feedback);
         if (model.hasAttendanceRecord(record)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENROLMENT);
         }
