@@ -305,7 +305,7 @@ Format: `student search [ses/SESSION_ID] [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]`
 * Students matching at least one keyword **or** are enrolled to the session will be returned.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-`SESSION_ID` only accepts one valid positive integer that corresponds with an existing session's ID.
+`SESSION_ID` only accepts one valid positive number that corresponds with an existing session's ID.
 
 This will be updated in future versions to allow the searching of multiple IDs.
 </div>
@@ -400,6 +400,7 @@ Format: `session search [d/DATE] [sub/SUBJECT_KEYWORDS]`
 Examples:
 * `session search d/22 May 2025` returns sessions with timeslots that include 22 May 2025.
 * `session search sub/Math d/11 Jun 2025` returns sessions with subjects `Math`, `Mathematics` and sessions with timeslots that include 11 June 2025.
+* `session search` will simply return all sessions.
 
 Example output (with matching keywords and date highlighted):
 
@@ -603,7 +604,7 @@ Furthermore, certain edits can cause the Tutorly to behave in unexpected ways (e
 | JDK                | Java Development Kit: A software package that provides everything needed to create and run Java programs.                                                                     |
 | Operating System   | An operating system is the main software that manages a computer’s hardware and allows you to run applications. Some examples include `Windows`, `Mac` and `Linux`.           |
 | Parameters         | These are placeholders in a command that users replace with specific information to customize the command's action. They are usually prefixed with letters like `n/` or `p/`. |
-| STUDENT_IDENTIFIER | A parameter used to identify a student. It can either be the student's ID (a positive integer), or their full name.                                                           |
+| STUDENT_IDENTIFIER | A parameter used to identify a student. It can either be the student's ID (a positive number), or their full name.                                                            |
 
 [Back to top :arrow_up:](#table-of-contents)
 
