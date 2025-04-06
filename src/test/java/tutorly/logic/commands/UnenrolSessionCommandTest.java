@@ -53,7 +53,7 @@ public class UnenrolSessionCommandTest {
         UnenrolSessionCommand unenrolSessionCommand = new UnenrolSessionCommand(bensonIdentity, INVALID_ID);
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_INVALID_SESSION_ID, () -> unenrolSessionCommand.execute(model));
+                Messages.MESSAGE_SESSION_NOT_FOUND, () -> unenrolSessionCommand.execute(model));
     }
 
     @Test
