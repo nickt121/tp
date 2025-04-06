@@ -373,7 +373,7 @@ Finds sessions on a particular date or on a subject which matches any of the giv
 
 Format: `session search [d/DATE] [sub/SUBJECT_KEYWORDS]`
 
-* The keywords and case-insensitive and order does not matter. e.g. `math eng` will match `Eng Math`
+* The keywords are case-insensitive and order does not matter. e.g. `math eng` will match `Eng Math`
 * Incomplete words will still be matched e.g. `Mat` will match `Math`
 * Sessions whose timeslots contain the given date or have a subject that match at least one keyword will be returned.
 
