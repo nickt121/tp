@@ -514,56 +514,118 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+### Launch and Shutdown
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+1. **Initial Launch**
+    1. Download the jar file and copy it into an empty folder.
+    2. Double-click the jar file.
+        - Expected: Shows the GUI with a set of sample students. The window size may not be optimal.
 
-</div>
+2. **Saving Window Preferences**
+    1. Resize the window to an optimal size. Move the window to a different location. Close the window.
+    2. Re-launch the app by double-clicking the jar file.
+        - Expected: The most recent window size and location are retained.
 
-### Launch and shutdown
+### Saving Data
 
-1. Initial launch
+1. **Dealing with Missing Data Files**
+    1. Simulate a missing file by renaming or deleting the data file.
+    2. Launch the application.
+        - Expected: Application should handle the error gracefully, by creating a new data file containing the sample data once any command is successfully executed. (For student/session add commands, it will also include the added student/session.)
 
-   1. Download the jar file and copy into an empty folder
+2. **Dealing with Corrupted Data Files**
+    1. Simulate a corrupted file by modifying the data file to be unreadable.
+    2. Launch the application.
+        - Expected: Application should clear the corrupted data file and create a empty data file once any command is successfully executed.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+### Adding a Student
 
-1. Saving window preferences
+1. **Adding a New Student**
+    1. Test case: Add a new student with valid details. `student add n/John Doe`
+        - Expected: Student is added successfully, and a confirmation message is shown.
+    2. Test case: Add a new student with invalid details (e.g., missing required fields `student add p/12345678`).
+        - Expected: Error message is shown, prompting for correct input.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Deleting a Student
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+1. **Deleting a Student**
+    Prerequisite: The student must exist in the list.
+    1. Test case: `student delete 1`
+        - Expected: Student with id 1 is deleted from the list. Details of the deleted students are shown.
+    2. Test case: `student delete 0`
+        - Expected: No student is deleted. Error details are shown in the status message.
+    3. Other incorrect delete commands to try: `student delete`, `student delete x`(where x is a number that is larger than the list size)
+        - Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Searching for a Student
 
-### Deleting a person
+1. **Search for a Student**
+    1. Test case: Search for a student by name. `student search n/John`
+        - Expected: A message "x students listed!" is shown. Matching student profiles are displayed. (x is the number of students matching the search query. If no matches are found, x = 0. If multiple matches are found, x > 1. If only one match is found, x = 1. The list of students is filtered to show only those matching the search query.)
+    2. Test case: Search with a query that has no matches. `student search n/NonExistent`
+        - Expected: "0 students listed!" message is shown.
 
-1. Deleting a person while all persons are being shown
+### Editing a Student
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. **Editing a Student**
+    1. Test case: Edit a student’s details with valid input. `student edit 1 n/John Smith`
+        - Expected: Student details are updated successfully, and a confirmation message is shown.
+    2. Test case: Edit a student’s details with invalid input. `student edit x n/John Smith`(x is a number larger than the list size)
+        - Expected: Error message "Student not found!" is shown.
+    3. Test case: Edit a student’s details with missing required fields. `student edit 1 n/`
+        - Expected: Error message is shown, prompting for correct input.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Adding a Session
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. **Adding a Session**
+    1. Test case: Add a new session with valid details. `session add t/30 Mar 2025 11:30-13:30 sub/Math`
+        - Expected: Session is added successfully, and a confirmation message is shown.
+    2. Test case: Add a new session with invalid details (e.g., missing required fields). `session add`
+        - Expected: Error message is shown, prompting for correct input.
+    3. Test case: Add a new session with overlapping timeslots. `session add t/30 Mar 2025 11:30-13:30 sub/Science` 
+   (Suppose there is a session whose time slot has overlapped with the new session's time slot.)
+        - Expected: Error message is shown, indicating the timeslot overlaps with an existing session.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Marking Attendance for a Session
 
-1. _{ more test cases …​ }_
+1. **Marking attendance for a session**
+    Prerequisite: The session and student must exist and the student must be enrolled in the session.
+    1. Test case: Mark a session with valid input. `session mark 1 ses/1`
+        - Expected: Attendance is marked successfully, and a confirmation message is shown.
+    2. Test case: Mark a session as completed with invalid input (e.g., invalid session id). `session mark 1 ses/x`(x is a number larger than the list size)
+        - Expected: Error message is shown, prompting for correct input.
+    3. Test case: Mark a session which the student is not enrolled in. `session mark 1 ses/2`
+        - Expected: Error message is shown, indicating the student is not enrolled in the session.
 
-### Saving data
+### Adding Feedback
 
-1. Dealing with missing/corrupted data files
+1. **Adding feedback for a session**
+    Prerequisite: The session and student must exist and the student must be enrolled in the session.
+    1. Test case: Add feedback with valid input. `session feedback 1 ses/1 f/Great session!`
+        - Expected: Feedback is added successfully, and a confirmation message is shown.
+    2. Test case: Add feedback with invalid input (e.g., missing required fields). `session feedback`
+        - Expected: Error message is shown, prompting for correct input.
+    3. Test case: Add feedback for a session which the student is not enrolled in. `session feedback 1 ses/2 f/Great session!`
+   (Suppose student 1 is not enrolled in session 2)
+        - Expected: Error message is shown, indicating the student is not enrolled in the session.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Undo Feature
 
-1. _{ more test cases …​ }_
+1. **Undo Operations**
+    1. Test case: Perform an action (e.g., add a student), then undo the action.
+        - Expected: The action is undone, and the previous state is restored. There is also a confirmation message shown.
 
---------------------------------------------------------------------------------------------------------------------
+### Error Handling
+
+1. **Invalid Commands**
+    1. Test case: Enter an invalid command.
+        - Expected: Error message is shown, indicating the command is not recognized/unknown.
+
+2. **System Errors**
+    1. Test case: Simulate a system error (e.g., by corrupting a data file).
+        - Expected: Application handles the error gracefully, removing or replacing the corrupted data file
+
+These instructions provide a starting point for testers to work on; testers are expected to do more exploratory testing.
 
 ## **Appendix: Planned Enhancements**
 
