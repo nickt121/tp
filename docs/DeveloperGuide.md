@@ -548,7 +548,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     2. Test case: Add a new student with invalid details (e.g., missing required fields `student add p/12345678`).
         - Expected: Error message is shown, prompting for correct input.
 
-### Deleting a Person
+### Deleting a Student
 
 1. **Deleting a Person While All Students Are Being Shown**
     1. Test case: `student delete 1`
@@ -587,7 +587,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    (Suppose there is a session whose time slot has overlapped with the new session's time slot.)
         - Expected: Error message is shown, indicating the timeslot overlaps with an existing session.
 
-### Marking attendance for a session
+### Marking Attendance for a Session
 
 1. **Marking attendance for a session**
    Prerequisite: The session and student must exist and the student must be enrolled in the session.
@@ -598,7 +598,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     3. Test case: Mark a session which the student is not enrolled in. `session mark 1 ses/2`
         - Expected: Error message is shown, indicating the student is not enrolled in the session.
 
-### Adding feedback
+### Adding Feedback
 
 1. **Adding feedback for a session**
     Prerequisite: The session and student must exist and the student must be enrolled in the session.
@@ -626,6 +626,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2. **System Errors**
     1. Test case: Simulate a system error (e.g., by corrupting a data file).
-        - Expected: Application handles the error gracefully, deleting the added corruptions
+        - Expected: Application handles the error gracefully, removing or replacing the corrupted data file
 
 These instructions provide a starting point for testers to work on; testers are expected to do more exploratory testing.
