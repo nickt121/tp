@@ -533,25 +533,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     2. Re-launch the app by double-clicking the jar file.
         - Expected: The most recent window size and location are retained.
 
-### Deleting a Person
-
-1. **Deleting a Person While All Persons Are Being Shown**
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-    2. Test case: `delete 1`
-        - Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message. Timestamp in the status bar is updated.
-    3. Test case: `delete 0`
-        - Expected: No person is deleted. Error details are shown in the status message. Status bar remains the same.
-    4. Other incorrect delete commands to try: `delete`, `delete x`(where x is a number that is larger than the list size)
-        - Expected: Similar to previous.
-
 ### Saving Data
 
 1. **Dealing with Missing/Corrupted Data Files**
     1. Simulate a missing/corrupted file by renaming or deleting the data file.
     2. Launch the application.
-        - Expected: Application should handle the error gracefully, possibly by creating a new data file or showing an error message.
+        - Expected: Application should handle the error gracefully, by creating a new data file containing the sample data.
 
-### Adding a Student Record
+### Adding a Student
 
 1. **Adding a New Student**
     1. Test case: Add a new student with valid details. `student add n/John Doe`
@@ -559,17 +548,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     2. Test case: Add a new student with invalid details (e.g., missing required fields `student add p/12345678`).
         - Expected: Error message is shown, prompting for correct input.
 
-### Searching for a Student Record
+### Deleting a Person
+
+1. **Deleting a Person While All Students Are Being Shown**
+    1. Test case: `student delete 1`
+        - Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `student delete 0`
+        - Expected: No student is deleted. Error details are shown in the status message. Status bar remains the same.
+    3. Other incorrect delete commands to try: `student delete`, `student delete x`(where x is a number that is larger than the list size)
+        - Expected: Similar to previous.
+
+### Searching for a Student
 
 1. **Search for a Student**
     1. Test case: Search for a student by name. `student search n/John`
-        - Expected: Matching student profiles are displayed.
+        - Expected: A message "x students listed!" is shown. Matching student profiles are displayed. (x is the number of students matching the search query. If no matches are found, x = 0. If multiple matches are found, x > 1. If only one match is found, x = 1. The list of students is filtered to show only those matching the search query.)
     2. Test case: Search with a query that has no matches. `student search n/NonExistent`
         - Expected: "0 students listed!" message is shown.
 
 ### Editing a Student
 
-1. **Editing a Student Record**
+1. **Editing a Student**
     1. Test case: Edit a student’s details with valid input. `student edit 1 n/John Smith`
         - Expected: Student details are updated successfully, and a confirmation message is shown.
     2. Test case: Edit a student’s details with invalid input. `student edit x n/John Smith`(x is a number larger than the list size)
@@ -577,13 +576,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     3. Test case: Edit a student’s details with missing required fields. `student edit 1 n/`
         - Expected: Error message is shown, prompting for correct input.
 
+### Adding a Session
+
+1. **Adding a Session**
+    1. Test case: Add a new session with valid details. `session add t/30 Mar 2025 11:30-13:30 sub/Math`
+        - Expected: Session is added successfully, and a confirmation message is shown.
+    2. Test case: Add a new session with invalid details (e.g., missing required fields). `session add`
+        - Expected: Error message is shown, prompting for correct input.
+    3. Test case: Add a new session with overlapping timeslots. `session add t/30 Mar 2025 11:30-13:30 sub/Science` 
+   (Suppose there is a session whose time slot has overlapped with the new session's time slot.)
+        - Expected: Error message is shown, indicating the timeslot overlaps with an existing session.
+
 ### Marking attendance for a session
 
 1. **Marking attendance for a session**
+   Prerequisite: The session and student must exist and the student must be enrolled in the session.
     1. Test case: Mark a session with valid input. `session mark 1 ses/1`
         - Expected: Attendance is marked successfully, and a confirmation message is shown.
     2. Test case: Mark a session as completed with invalid input (e.g., invalid session id). `session mark 1 ses/x`(x is a number larger than the list size)
         - Expected: Error message is shown, prompting for correct input.
+    3. Test case: Mark a session which the student is not enrolled in. `session mark 1 ses/2`
+        - Expected: Error message is shown, indicating the student is not enrolled in the session.
+
+### Adding feedback 
+1. **Adding feedback for a session**
+    Prerequisite: The session and student must exist and the student must be enrolled in the session.
+    1. Test case: Add feedback with valid input. `session feedback 1 ses/1 f/Great session!`
+        - Expected: Feedback is added successfully, and a confirmation message is shown.
+    2. Test case: Add feedback with invalid input (e.g., missing required fields). `session feedback`
+        - Expected: Error message is shown, prompting for correct input.
+    3. Test case: Add feedback for a session which the student is not enrolled in. `session feedback 1 ses/2 f/Great session!`
+   (Suppose student 1 is not enrolled in session 2)
+        - Expected: Error message is shown, indicating the student is not enrolled in the session.
 
 ### Undo/Redo Feature
 
