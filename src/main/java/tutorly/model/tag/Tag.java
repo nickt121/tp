@@ -12,8 +12,8 @@ public class Tag {
     public static final int MAX_LENGTH = 20;
 
     public static final String MESSAGE_CONSTRAINTS = "Tag names can take any values, and can be blank if only one tag "
-            + "is provided. If multiple tags are provided, all tag names should not be blank. "
-            + "The maximum length of a tag name is " + MAX_LENGTH + " characters.";
+            + "is provided while editing student details. If multiple tags are provided, all tag names should not be "
+            + "blank. The maximum length of a tag name is " + MAX_LENGTH + " characters.";
 
     /*
      * The first character of the tag must not be a whitespace,

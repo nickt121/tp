@@ -11,8 +11,8 @@ public class Name {
 
     public static final int MAX_LENGTH = 255;
 
-    public static final String MESSAGE_CONSTRAINTS = "Names should not be blank. It should only contain letters, "
-            + "numbers, spaces, and these special characters: ()@*-+=:;'<>,?/. "
+    public static final String MESSAGE_CONSTRAINTS = "Names should not be blank. It should start with a letter, "
+            + "and only contain letters, numbers, spaces, and these special characters: ()@*-+=:;'<>,?/. "
             + "Multiple intermediate spaces will be collapsed to one. "
             + "The maximum length is " + MAX_LENGTH + " characters.";
 
