@@ -598,7 +598,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     3. Test case: Mark a session which the student is not enrolled in. `session mark 1 ses/2`
         - Expected: Error message is shown, indicating the student is not enrolled in the session.
 
-### Adding feedback 
+### Adding feedback
+
 1. **Adding feedback for a session**
     Prerequisite: The session and student must exist and the student must be enrolled in the session.
     1. Test case: Add feedback with valid input. `session feedback 1 ses/1 f/Great session!`
