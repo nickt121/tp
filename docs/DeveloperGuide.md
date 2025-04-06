@@ -438,11 +438,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case resumes at step 2.
 
 - 2b. The timeslot overlaps with another existing session.
-    - 2b1.Tutorly displays an error message indicating the timeslot overlaps with an existing session.
+    - 2b1. Tutorly displays an error message indicating the timeslot overlaps with an existing session.
     - Use case ends.
 
 - 2c. Tutor does not provide all required fields.
-    - 2c1.Tutorly prompts for the missing information.
+    - 2c1. Tutorly prompts for the missing information.
     - Use case resumes at step 2.
 
 ---
@@ -465,7 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case resumes at step 2.
 
 - 2b.Tutor does not provide all required fields.
-    - 2b1.Tutorly prompts for the missing information.
+    - 2b1. Tutorly prompts for the missing information.
     - Use case resumes at step 2.
 
 ### Non-Functional Requirements
