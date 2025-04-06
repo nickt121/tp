@@ -568,6 +568,6 @@ testers are expected to do more *exploratory* testing.
 ## **Appendix: Planned Enhancements**
 
 1. A `redo` command to undo an `undo` command.
-2. `student search` via other fields including **tags**.
+2. Improved `search` command for `student` and `session` with other fields including **tags** and **date/time range** with control over matching **any** or **all** fields.
 3. `class` management commands that handles adding of **multiple** sessions and **mass** enrolling/marking of attendance for students.
 4. Viewing sessions each student is enrolled in via the `students` tab.

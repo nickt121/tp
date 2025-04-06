@@ -597,7 +597,7 @@ Furthermore, certain edits can cause the Tutorly to behave in unexpected ways (e
 Planned features that will be added in the coming versions.
 
 1. A `redo` command in case you want to undo your `undo`.
-2. `student search` via other fields including **tags**.
+2. Improved `search` command for `student` and `session` with other fields including **tags** and **date/time range** with control over matching **any** or **all** fields.
 3. `class` management commands that handles adding of **multiple** sessions and **mass** enrolling/marking of attendance for students.
 4. Viewing sessions each student is enrolled in via the `students` tab.
 
