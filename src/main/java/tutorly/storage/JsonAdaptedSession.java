@@ -73,6 +73,8 @@ class JsonAdaptedSession {
             modelTimeslot = new Timeslot(LocalDateTime.parse(startTime), LocalDateTime.parse(endTime));
         } catch (DateTimeParseException e) {
             throw new IllegalValueException(ParserUtil.MESSAGE_INVALID_DATETIME);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(e.getMessage());
         }
 
         if (subject == null) {
