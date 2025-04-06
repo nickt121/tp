@@ -18,7 +18,7 @@ public class ViewSessionCommand extends SessionCommand {
             + "\nParameters: SESSION_ID"
             + "\nExample: " + COMMAND_STRING + " 1";
 
-    private final Integer sessionId;
+    private final int sessionId;
 
     public ViewSessionCommand(int sessionId) {
         this.sessionId = sessionId;
