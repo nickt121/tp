@@ -550,11 +550,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Deleting a Student
 
-1. **Deleting a Person While All Students Are Being Shown**
+1. **Deleting a Student**
+    Prerequisite: The student must exist in the list.
     1. Test case: `student delete 1`
         - Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message. Timestamp in the status bar is updated.
     2. Test case: `student delete 0`
-        - Expected: No student is deleted. Error details are shown in the status message. Status bar remains the same.
+        - Expected: No student is deleted. Error details are shown in the status message.
     3. Other incorrect delete commands to try: `student delete`, `student delete x`(where x is a number that is larger than the list size)
         - Expected: Similar to previous.
 
@@ -590,7 +591,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Marking Attendance for a Session
 
 1. **Marking attendance for a session**
-   Prerequisite: The session and student must exist and the student must be enrolled in the session.
+    Prerequisite: The session and student must exist and the student must be enrolled in the session.
     1. Test case: Mark a session with valid input. `session mark 1 ses/1`
         - Expected: Attendance is marked successfully, and a confirmation message is shown.
     2. Test case: Mark a session as completed with invalid input (e.g., invalid session id). `session mark 1 ses/x`(x is a number larger than the list size)
@@ -610,7 +611,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    (Suppose student 1 is not enrolled in session 2)
         - Expected: Error message is shown, indicating the student is not enrolled in the session.
 
-### Undo/Redo Feature
+### Undo Feature
 
 1. **Undo/Redo Operations**
     1. Test case: Perform an action (e.g., add a student), then undo the action.
@@ -629,3 +630,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         - Expected: Application handles the error gracefully, removing or replacing the corrupted data file
 
 These instructions provide a starting point for testers to work on; testers are expected to do more exploratory testing.
+
+## **Appendix: Planned Enhancements**
+
+1. A `redo` command to undo an `undo` command.
+2. `student search` via other fields including **tags**.
+3. `class` management commands that handles adding of **multiple** sessions and **mass** enrolling/marking of attendance for students.
+4. Viewing sessions each student is enrolled in via the `students` tab.
