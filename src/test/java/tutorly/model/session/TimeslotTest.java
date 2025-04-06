@@ -33,6 +33,12 @@ public class TimeslotTest {
     }
 
     @Test
+    public void constructor_sameTimeslot_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, Timeslot.MESSAGE_END_BEFORE_START_DATETIME, () ->
+                new Timeslot(VALID_START_TIME, VALID_START_TIME));
+    }
+
+    @Test
     public void isOverlapping() {
         Timeslot timeslot1 = new Timeslot(VALID_START_TIME, VALID_END_TIME);
         Timeslot timeslot2 = new Timeslot(VALID_START_TIME.minusHours(1), VALID_END_TIME.minusHours(1));
@@ -41,6 +47,7 @@ public class TimeslotTest {
         Timeslot timeslot5 = new Timeslot(VALID_END_TIME, VALID_END_TIME.plusHours(2));
         Timeslot timeslot6 = new Timeslot(VALID_START_TIME.minusHours(2), VALID_START_TIME);
 
+        assertTrue(timeslot1.isOverlapping(timeslot1)); // same timeslot
         assertTrue(timeslot1.isOverlapping(timeslot2));
         assertTrue(timeslot1.isOverlapping(timeslot3));
         assertTrue(timeslot1.isOverlapping(timeslot4));

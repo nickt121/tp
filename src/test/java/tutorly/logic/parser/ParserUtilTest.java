@@ -286,19 +286,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTimeslot_sameStartAndEndTime_returnsTimeslot() throws Exception {
-        String validTimeslot = "25 Mar 2025 10:00-10:00";
-        Timeslot expectedTimeslot = new Timeslot(LocalDateTime.of(2025, 3, 25, 10, 0),
-                LocalDateTime.of(2025, 3, 25, 10, 0));
-        assertEquals(expectedTimeslot, ParserUtil.parseTimeslot(validTimeslot));
+    public void parseTimeslot_sameStartAndEndTime_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimeslot("25 Mar 2025 10:00-10:00"));
     }
 
     @Test
-    public void parseTimeslot_sameStartAndEndTimeWithEndDate_returnsTimeslot() throws Exception {
-        String validTimeslot = "25 Mar 2025 10:00-26 Mar 2025 10:00";
-        Timeslot expectedTimeslot = new Timeslot(LocalDateTime.of(2025, 3, 25, 10, 0),
-                LocalDateTime.of(2025, 3, 26, 10, 0));
-        assertEquals(expectedTimeslot, ParserUtil.parseTimeslot(validTimeslot));
+    public void parseTimeslot_sameStartAndEndTimeWithEndDate_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimeslot("25 Mar 2025 10:00-25 Mar 2025 10:00"));
     }
 
     @Test
