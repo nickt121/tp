@@ -21,6 +21,7 @@ public class JsonAdaptedSessionTest {
     private static final String VALID_SUBJECT = "Mathematics";
 
     private static final int INVALID_SESSION_ID = 0;
+    private static final String INVALID_START_TIME = "2020-01-01T14:00:00"; // start time after end time
     private static final String INVALID_DATETIME = "21-03-2025"; // Incorrect format
     private static final String INVALID_SUBJECT = ""; // Empty subject
 
@@ -73,6 +74,13 @@ public class JsonAdaptedSessionTest {
         JsonAdaptedSession session = new JsonAdaptedSession(VALID_SESSION_ID, VALID_START_TIME, VALID_END_TIME, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "subject");
         assertThrows(IllegalValueException.class, expectedMessage, session::toModelType);
+    }
+
+    @Test
+    public void toModelType_startAfterEndTime_throwsIllegalValueException() {
+        JsonAdaptedSession session = new JsonAdaptedSession(
+                VALID_SESSION_ID, INVALID_START_TIME, VALID_END_TIME, VALID_SUBJECT);
+        assertThrows(IllegalValueException.class, Timeslot.MESSAGE_END_BEFORE_START_DATETIME, session::toModelType);
     }
 
     @Test
