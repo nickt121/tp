@@ -394,32 +394,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: Mark attendance for a tutoring session**
-
-**MSS**
-
-1. Tutor requests to mark a session as attended by providing the student’s identifier, Session ID, and attendance status.
-2. Tutorly validates the input.
-3. Tutorly logs the attendance.
-4. Tutorly confirms success.
-
-   Use case ends.
-   
-**Extensions**
-- 2a. The student identifier does not exist.
-    - 2a1. Tutorly displays an error message showing the student identifier does not exist.
-    - Use case ends.
-
-- 2b. The Session ID does not exist. 
-    - 2b1. Tutorly displays an error message showing the session ID does not exist.
-    - Use case ends.
-
-- 2c. The student is not enrolled in the session.
-    - 2c1. Tutorly displays an error message indicating the student is not enrolled in the session.
-    - Use case ends.
-
----
-
 **Use case: Add a Session**
 
 **MSS**
@@ -468,6 +442,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. Tutorly displays an appropriate error message.
     - 2a2. Tutor corrects the input.
     - Use case resumes at step 2.
+
+--
+
+**Use case: Mark attendance for a tutoring session**
+
+**MSS**
+
+1. Tutor requests to mark a session as attended by providing the student’s identifier, Session ID, and attendance status.
+2. Tutorly validates the input.
+3. Tutorly logs the attendance.
+4. Tutorly confirms success.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The student identifier does not exist.
+    - 2a1. Tutorly displays an error message showing the student identifier does not exist.
+    - Use case ends.
+
+- 2b. The Session ID does not exist.
+    - 2b1. Tutorly displays an error message showing the session ID does not exist.
+    - Use case ends.
+
+- 2c. The student is not enrolled in the session.
+    - 2c1. Tutorly displays an error message indicating the student is not enrolled in the session.
+    - Use case ends.
 
 ### Non-Functional Requirements
 
