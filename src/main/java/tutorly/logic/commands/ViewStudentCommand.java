@@ -30,6 +30,7 @@ public class ViewStudentCommand extends StudentCommand {
         Person student = model.getPersonByIdentity(identity)
                 .orElseThrow(() -> new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND));
 
+        model.updateFilteredPersonList(Model.FILTER_SHOW_ALL_PERSONS);
         return new CommandResult.Builder(String.format(Messages.MESSAGE_PERSON_SHOWN, Messages.format(student)))
                 .withTab(Tab.student(student))
                 .build();

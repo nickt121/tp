@@ -80,6 +80,7 @@ public class EnrolSessionCommand extends SessionCommand {
         }
 
         model.addAttendanceRecord(record);
+        model.updateFilteredSessionList(Model.FILTER_SHOW_ALL_SESSIONS);
         return new CommandResult.Builder(
                 String.format(MESSAGE_SUCCESS, person.get().getName().fullName, Messages.format(session.get())))
                 .withTab(Tab.attendanceRecord(session.get(), record))
