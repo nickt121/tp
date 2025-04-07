@@ -271,31 +271,29 @@ reducing manual effort and ensuring better organization.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                                         | So that I can…​                                                                   |
-|----------|-----------------------------------|------------------------------------------------------|-----------------------------------------------------------------------------------|
-| `* * *`  | new user                          | see usage instructions                               | refer to instructions when I forget how to use the app                            |
-| `* * *`  | user                              | add a new student with basic details                 | begin tracking their progress                                                     |
-| `* * *`  | user                              | log past lesson notes for a student                  | recall what was previously covered                                                |
-| `* * *`  | user with many students           | search a student by name                             | quickly find their details before a session without going through the entire list |
-| `* * *`  | user                              | edit student records                                 | update student details when they change                                           |
-| `* * *`  | long-time user                    | archive or delete old student records                | stop tracking students that I no longer teach                                     |
-| `* * *`  | user                              | mark a session as completed and record attendance    | track my classes                                                                  |
-| `* *`    | potential user                    | see the app populated with sample data initially     | easily visualise how it will look like in real use                                |
-| `* *`    | user ready to start using the app | delete all sample data                               | start fresh with my actual students                                               |
-| `* *`    | user with many students           | sort students by any field                           | locate a student easily                                                           |
-| `* *`    | user                              | log lesson details and assign homework               | keep track of progress and tasks                                                  |
-| `* *`    | user                              | search lesson notes by keywords                      | quickly find when a topic was last covered                                        |
-| `* *`    | user                              | create custom tags for students                      | categorise them based on needs                                                    |
-| `* *`    | user                              | filter students by custom tags                       | see all students with particular needs                                            |
-| `* *`    | returning user                    | quickly resume by accessing archived student records | pick up where I left off                                                          |
-| `*`      | expert user                       | bulk-edit lesson notes or assignments                | save time by updating multiple records at once                                    |
-| `*`      | user teaching multiple subjects   | customise tracking fields for different subjects     | tailor my records to different teaching needs                                     |
-| `*`      | user teaching group classes       | create group sessions with multiple students         | track their progress collectively as a class                                      |
-| `*`      | user                              | generate a progress report for a student             | share updates with parents                                                        |
-| `*`      | user                              | receive a weekly summary of my sessions              | review my workload                                                                |
-| `*`      | user                              | set reminder for upcoming sessions                   | remember upcoming lessons                                                         |
-| `*`      | user                              | view reminders for upcoming sessions                 | plan my schedule                                                                  |
-| `*`      | user                              | hide private contact details                         | minimise chance of someone else seeing them by accident                           |
+| Priority | As a …​                           | I want to …​                                     | So that I can…​                                                                   |
+|----------|-----------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`  | new user                          | see usage instructions                           | refer to instructions when I forget how to use the app                            |
+| `* * *`  | user                              | add a new student with basic details             | begin tracking their progress                                                     |
+| `* * *`  | user                              | record additional student details                | recall other information about the student                                        |
+| `* * *`  | user with many students           | search a student by name or phone number         | quickly find their details before a session without going through the entire list |
+| `* * *`  | user                              | edit student records                             | update student details when they change                                           |
+| `* * *`  | long-time user                    | delete old student records                       | stop tracking students that I no longer teach                                     |
+| `* * *`  | user                              | record student attendance                        | track my student's participation                                                  |
+| `* *`    | potential user                    | see the app populated with sample data initially | easily visualise how it will look like in real use                                |
+| `* *`    | user ready to start using the app | delete all sample data                           | start fresh with my actual students                                               |
+| `* *`    | user                              | log lesson feedback                              | keep track of progress of a student in the session                                |
+| `* *`    | user                              | create custom tags for students                  | categorise them based on needs                                                    |
+| `*`      | user with many students           | sort students by any field                       | locate a student easily                                                           |
+| `*`      | user                              | filter students by custom tags                   | see all students with particular needs                                            |
+| `*`      | expert user                       | bulk-edit lesson notes or assignments            | save time by updating multiple records at once                                    |
+| `*`      | user teaching multiple subjects   | customise tracking fields for different subjects | tailor my records to different teaching needs                                     |
+| `*`      | user teaching group classes       | create group sessions with multiple students     | track their progress collectively as a class                                      |
+| `*`      | user                              | generate a progress report for a student         | share updates with parents                                                        |
+| `*`      | user                              | receive a weekly summary of my sessions          | review my workload                                                                |
+| `*`      | user                              | set reminder for upcoming sessions               | remember upcoming lessons                                                         |
+| `*`      | user                              | view reminders for upcoming sessions             | plan my schedule                                                                  |
+| `*`      | user                              | hide private contact details                     | minimise chance of someone else seeing them by accident                           |
 
 
 ### Use Cases
