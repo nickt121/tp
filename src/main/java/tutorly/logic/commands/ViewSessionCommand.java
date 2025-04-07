@@ -29,6 +29,7 @@ public class ViewSessionCommand extends SessionCommand {
         Session session = model.getSessionById(sessionId)
                 .orElseThrow(() -> new CommandException(Messages.MESSAGE_SESSION_NOT_FOUND));
 
+        model.updateFilteredSessionList(Model.FILTER_SHOW_ALL_SESSIONS);
         return new CommandResult.Builder(String.format(Messages.MESSAGE_SESSION_SHOWN, Messages.format(session)))
                 .withTab(Tab.session(session))
                 .build();
