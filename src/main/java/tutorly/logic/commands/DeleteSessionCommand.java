@@ -38,7 +38,7 @@ public class DeleteSessionCommand extends SessionCommand {
 
         Optional<Session> toDelete = model.getSessionById(sessionId);
         if (toDelete.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_SESSION_ID);
+            throw new CommandException(Messages.MESSAGE_SESSION_NOT_FOUND);
         }
 
         model.deleteSession(toDelete.get());

@@ -461,6 +461,8 @@ Marks the attendance of a student with the specified [STUDENT_IDENTIFIER](#gloss
 
 Format: `session mark STUDENT_IDENTIFIER ses/SESSION_ID`
 
+* Note that only students who are enrolled in the session can be marked as present.
+
 Examples:
 * `session mark 2 ses/3` marks the attendance for the student with an ID of 2 for a session with an ID of 3 as present.
 * `session mark John Doe ses/4` marks the attendance for a student with the name `John Doe` for a session with an ID of 4 as present.
@@ -478,6 +480,8 @@ You can also click on the checkbox next to a student's name in a session's atten
 Unmarks the attendance of a student with the specified [STUDENT_IDENTIFIER](#glossary) for a session.
 
 Format: `session unmark STUDENT_IDENTIFIER ses/SESSION_ID`
+
+* Note that only students who are enrolled in the session can be unmarked.
 
 Examples:
 * `session unmark 2 ses/3` unmarks the attendance for the student with an ID of 2 for a session with an ID of 3.
@@ -547,7 +551,7 @@ Furthermore, certain edits can cause the Tutorly to behave in unexpected ways (e
 **A**: `Memo` is a short note you can add on to a student's details, while `feedback` is specifically for a student's performance in a particular session.
 
 **Q**: How should I fill in the `STUDENT_IDENTIFIER` parameter?<br>
-**A**: The `STUDENT_IDENTIFIER` can either be the student's ID or their full name, both of which are viewable from the student tab in the app.
+**A**: The [`STUDENT_IDENTIFIER`](#glossary) can either be the student's ID or their full name, both of which are viewable from the student tab in the app.
 
 [Back to top :arrow_up:](#table-of-contents)
 

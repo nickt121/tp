@@ -41,7 +41,7 @@ public class DeleteSessionCommandTest {
         int invalidSessionId = model.getFilteredSessionList().size() + 1;
         DeleteSessionCommand deleteCommand = new DeleteSessionCommand(invalidSessionId);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_SESSION_ID);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_SESSION_NOT_FOUND);
     }
 
     @Test

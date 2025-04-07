@@ -58,7 +58,7 @@ public class AttendanceUnmarkSessionCommandTest {
         AttendanceUnmarkSessionCommand attendanceUnmarkSessionCommand =
                 new AttendanceUnmarkSessionCommand(aliceIdentity, INVALID_ID);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_SESSION_ID, () ->
+        assertThrows(CommandException.class, Messages.MESSAGE_SESSION_NOT_FOUND, () ->
                 attendanceUnmarkSessionCommand.execute(model));
     }
 

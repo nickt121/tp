@@ -61,7 +61,7 @@ public class AttendanceFeedbackCommand extends SessionCommand {
 
         Optional<Session> session = model.getSessionById(sessionId);
         if (session.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_SESSION_ID);
+            throw new CommandException(Messages.MESSAGE_SESSION_NOT_FOUND);
         }
 
         AttendanceRecord dummyRecord = new AttendanceRecord(person.get().getId(), sessionId, true, Feedback.empty());

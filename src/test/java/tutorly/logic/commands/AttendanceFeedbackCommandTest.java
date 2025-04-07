@@ -74,7 +74,7 @@ public class AttendanceFeedbackCommandTest {
                 bensonIdentity, INVALID_ID, parseFeedback("Good job!"));
 
         assertThrows(CommandException.class, () -> command.execute(model));
-        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_SESSION_ID);
+        assertCommandFailure(command, model, Messages.MESSAGE_SESSION_NOT_FOUND);
     }
 
     @Test
