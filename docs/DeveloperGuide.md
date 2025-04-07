@@ -316,6 +316,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
+- 1a. Tutor does not provide all compulsory fields.
+    - 1a1. Tutorly prompts for the missing information.
+    - Use case resumes at step 2.
+
 - 2a. Tutor provides invalid input for any field.
     - 2a1. Tutorly displays an appropriate error message.
     - 2a2. Tutor corrects the input.
@@ -324,10 +328,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2b. The student already exists (Same Name).
     - 2b1. Tutorly displays an error message indicating the student already exists.
     - Use case ends.
-
-- 2c. Tutor does not provide all compulsory fields.
-    - 2c1. Tutorly prompts for the missing information.
-    - Use case resumes at step 2.
 
 ---
 
@@ -361,12 +361,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 2a. The student Identifier does not exist.
-    - 2a1. Tutorly responds that the student does not exist.
+- 1a. Tutor does not provide any update parameters.
+    - 1a1. Tutorly displays an error message indicating that there must be at least one update parameter.
     - Use case ends.
 
-- 2b. Tutor does not provide any update parameters.
-    - 2b1. Tutorly displays an error message indicating that there must be at least one update parameter.
+- 2a. The student Identifier does not exist.
+    - 2a1. Tutorly responds that the student does not exist.
     - Use case ends.
 
 - 2c. Tutor provides invalid input for any field.
@@ -398,7 +398,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Tutor requests to mark a session as attended by providing the student’s ID, Session ID, and attendance status.
+1. Tutor requests to mark a session as attended by providing the student’s identifier, Session ID, and attendance status.
 2. Tutorly validates the input.
 3. Tutorly logs the attendance.
 4. Tutorly confirms success.
@@ -406,16 +406,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
    
 **Extensions**
-- 2a. The student ID does not exist.
-    - 2a1. Tutorly displays an error message showing the student ID does not exist.
+- 2a. The student identifier does not exist.
+    - 2a1. Tutorly displays an error message showing the student identifier does not exist.
     - Use case ends.
 
 - 2b. The Session ID does not exist. 
     - 2b1. Tutorly displays an error message showing the session ID does not exist.
     - Use case ends.
 
-- 3a. The student is not enrolled in the session.
-    - 3a1. Tutorly displays an error message indicating the student is not enrolled in the session.
+- 2c. The student is not enrolled in the session.
+    - 2c1. Tutorly displays an error message indicating the student is not enrolled in the session.
     - Use case ends.
 
 ---
@@ -432,6 +432,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
+- 1a. Tutor does not provide all required fields.
+    - 1a1. Tutorly prompts for the missing information.
+    - Use case resumes at step 2.
+
 - 2a. Tutor provides invalid input for any field.
     - 2a1. Tutorly displays an appropriate error message.
     - 2a2. Tutor corrects the input.
@@ -441,17 +445,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2b1. Tutorly displays an error message indicating the timeslot overlaps with an existing session.
     - Use case ends.
 
-- 2c. Tutor does not provide all required fields.
-    - 2c1. Tutorly prompts for the missing information.
-    - Use case resumes at step 2.
-
 ---
 
 **Use case: Enrol a student to a session**
 
 **MSS**
 
-1. Tutor requests to enrol a new student to an existing session by providing the student’s ID and Session ID.
+1. Tutor requests to enrol a new student to an existing session by providing the student’s identifier and Session ID.
 2. Tutorly validates the input.
 3. Tutorly adds the student profile to the session and confirms success.
 
@@ -459,13 +459,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
+- 1a. Tutor does not provide all required fields.
+    - 1a1. Tutorly prompts for the missing information.
+    - 1a2. Tutor corrects the input.
+    - Use case resumes at step 2.
+
 - 2a. Tutor provides invalid input for any field.
     - 2a1. Tutorly displays an appropriate error message.
     - 2a2. Tutor corrects the input.
-    - Use case resumes at step 2.
-
-- 2b.Tutor does not provide all required fields.
-    - 2b1. Tutorly prompts for the missing information.
     - Use case resumes at step 2.
 
 ### Non-Functional Requirements
