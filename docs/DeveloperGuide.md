@@ -236,28 +236,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Tutor requests to add a new student.
-2. Tutorly prompts for student details (Name, Phone, Email, Address, Tag, Memo).
-3. Tutor provides the required information.
-4. Tutorly validates the input.
-5. Tutorly adds the student profile to the database and confirms success.
+1. Tutor requests to add a new student with the required details (Name, Phone, Email, Address, Tag, Memo).
+2. Tutorly validates the input.
+3. Tutorly adds the student profile to the database and confirms success.
 
    Use case ends.
 
 **Extensions**
 
-- 3a. Tutor provides invalid input for any field.
-    - 3a1. Tutorly displays an appropriate error message.
-    - 3a2. Tutor corrects the input.
-    - Use case resumes at step 4.
+- 1a. Tutor does not provide all compulsory fields.
+    - 1a1. Tutorly prompts for the missing information.
+    - Use case resumes at step 2.
 
-- 4a. The student already exists (Same Name).
-    - 4a1. Tutorly displays an error message: “Student already exists.”
+- 2a. Tutor provides invalid input for any field.
+    - 2a1. Tutorly displays an appropriate error message.
+    - 2a2. Tutor corrects the input.
+    - Use case resumes at step 2.
+
+- 2b. The student already exists (Same Name).
+    - 2b1. Tutorly displays an error message indicating the student already exists.
     - Use case ends.
-
-- 4b. Tutor does not provide all required fields.
-    - 4b1. Tutorly prompts for the missing information.
-    - Use case resumes at step 3.
 
 ---
 
@@ -273,12 +271,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 2a. The search query is empty.
-    - 2a1. Tutorly displays an error message: “Search query cannot be empty.”
-    - Use case ends.
-
 - 3a. No students match the search query.
-    - 3a1. Tutorly displays: “No student found matching the query.”
+    - 3a1. Tutorly responds that no students match the search query.
     - Use case ends.
 
 ---
@@ -287,28 +281,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Tutor requests to update a student record by providing the student’s Identifier.
-2. Tutorly retrieves the student’s existing profile.
-3. Tutor provides updated details (e.g., Name, Phone, Email, Address, Tag, Memo).
-4. Tutorly validates the input.
-5. Tutorly updates the student profile and confirms success.
+1. Tutor requests to update a student record by providing the student’s Identifier and updated details. (e.g., Name, Phone, Email, Address, Tag, Memo).
+2. Tutorly validates the input.
+3. Tutorly updates the student profile and confirms success.
 
    Use case ends.
 
 **Extensions**
 
+- 1a. Tutor does not provide any update parameters.
+    - 1a1. Tutorly displays an error message indicating that there must be at least one update parameter.
+    - Use case ends.
+
 - 2a. The student Identifier does not exist.
-    - 2a1. Tutorly displays an error message: “Invalid student Identifier.”
+    - 2a1. Tutorly responds that the student does not exist.
     - Use case ends.
 
-- 3a. Tutor does not provide any update parameters.
-    - 3a1. Tutorly displays an error message: “No update provided.”
-    - Use case ends.
-
-- 4a. Tutor provides invalid input for any field.
-    - 4a1. Tutorly displays an appropriate error message.
-    - 4a2. Tutor corrects the input.
-    - Use case resumes at step 5.
+- 2c. Tutor provides invalid input for any field.
+    - 2c1. Tutorly displays an appropriate error message.
+    - 2c2. Tutor corrects the input.
+    - Use case resumes at step 2.
 
 ---
 
@@ -316,60 +308,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Tutor requests to delete a student record by providing the student’s Identifier..
-2. Tutorly retrieves the student record.
-3. Tutorly validates the request and performs the action.
-4. Tutorly confirms the success of the operation.
+1. Tutor requests to delete a student record by providing the student’s Identifier.
+2. Tutorly validates the request and performs the action.
+3. Tutorly confirms the success of the operation.
 
    Use case ends.
 
 **Extensions**
 
 - 2a. The student Identifier does not exist.
-    - 2a1. Tutorly displays an error message: “Student record not found.”
+    - 2a1. Tutorly displays an error message indicating the student does not exist.
     - Use case ends.
 
----
-
-**Use case: Mark attendance for a tutoring session**
-
-**MSS**
-
-1. Tutor requests to mark a session as attended by providing the student’s ID, Session ID, and attendance status.
-2. Tutorly validates the input.
-3. Tutorly logs the attendance.
-4. Tutorly confirms success.
-
-   Use case ends.
-   
 ---
 
 **Use case: Add a Session**
 
 **MSS**
 
-1. Tutor requests to add a new session.
-2. Tutorly prompts for session details (Timeslot, Subject).
-3. Tutor provides the required information.
-4. Tutorly validates the input.
-5. Tutorly adds the session to the database and confirms success.
+1. Tutor requests to add a new session with the required details (Timeslot, Subject).
+2. Tutorly validates the input.
+3. Tutorly adds the session to the database and confirms success.
 
    Use case ends.
 
 **Extensions**
 
-- 3a. Tutor provides invalid input for any field.
-    - 3a1. Tutorly displays an appropriate error message.
-    - 3a2. Tutor corrects the input.
-    - Use case resumes at step 4.
+- 1a. Tutor does not provide all required fields.
+    - 1a1. Tutorly prompts for the missing information.
+    - Use case resumes at step 2.
 
-- 4a. The timeslot overlaps with another existing session.
-    - 4a1. Tutorly displays an error message: “Session clashes with another session.”
+- 2a. Tutor provides invalid input for any field.
+    - 2a1. Tutorly displays an appropriate error message.
+    - 2a2. Tutor corrects the input.
+    - Use case resumes at step 2.
+
+- 2b. The timeslot overlaps with another existing session.
+    - 2b1. Tutorly displays an error message indicating the timeslot overlaps with an existing session.
     - Use case ends.
-
-- 4b. Tutor does not provide all required fields.
-    - 4b1. Tutorly prompts for the missing information.
-    - Use case resumes at step 3.
 
 ---
 
@@ -377,50 +353,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Tutor requests to enrol a new student to an existing session.
-2. Tutorly prompts for student and session details (Student Identifier, Session ID).
-3. Tutor provides the required information.
-4. Tutorly validates the input.
-5. Tutorly adds the student profile to the session and confirms success.
+1. Tutor requests to enrol a new student to an existing session by providing the student’s identifier and Session ID.
+2. Tutorly validates the input.
+3. Tutorly adds the student profile to the session and confirms success.
 
    Use case ends.
 
 **Extensions**
 
-- 3a. Tutor provides invalid input for any field.
-    - 3a1. Tutorly displays an appropriate error message.
-    - 3a2. Tutor corrects the input.
-    - Use case resumes at step 4.
+- 1a. Tutor does not provide all required fields.
+    - 1a1. Tutorly prompts for the missing information.
+    - 1a2. Tutor corrects the input.
+    - Use case resumes at step 2.
 
-- 4a. The student already exists in the session (Same Name).
-    - 4a1. Tutorly displays an error message: “Student already exists in session.”
-    - Use case ends.
+- 2a. Tutor provides invalid input for any field.
+    - 2a1. Tutorly displays an appropriate error message.
+    - 2a2. Tutor corrects the input.
+    - Use case resumes at step 2.
 
-- 4b. The student Identifier does not exist.
-    - 4b1. Tutorly displays an error message: “Student record not found.”
-    - Use case ends.
+--
 
-- 4c. The session does not exist.
-    - 4c1. Tutorly displays an error message: “Session not found.”
-    - Use case ends.
+**Use case: Mark attendance for a tutoring session**
 
-- 4d. Tutor does not provide all required fields.
-    - 4d1. Tutorly prompts for the missing information.
-    - Use case resumes at step 3.
+**MSS**
 
+1. Tutor requests to mark a session as attended by providing the student’s identifier, Session ID, and attendance status.
+2. Tutorly validates the input.
+3. Tutorly logs the attendance.
+4. Tutorly confirms success.
+
+   Use case ends.
 
 **Extensions**
-
-- 2a. The student ID does not exist.
-    - 2a1. Tutorly displays an error message: “Invalid student ID.”
+- 2a. The student identifier does not exist.
+    - 2a1. Tutorly displays an error message showing the student identifier does not exist.
     - Use case ends.
 
 - 2b. The Session ID does not exist.
-    - 2b1. Tutorly displays an error message: “Invalid Session ID”
+    - 2b1. Tutorly displays an error message showing the session ID does not exist.
     - Use case ends.
 
-- 3a. A session and student is already marked.
-    - 3a1. Tutorly displays an erorr message: "Student is already marked present"
+- 2c. The student is not enrolled in the session.
+    - 2c1. Tutorly displays an error message indicating the student is not enrolled in the session.
     - Use case ends.
 
 ### Non-Functional Requirements
