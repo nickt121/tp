@@ -151,7 +151,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Undo feature
 
-There a several ways to build an undo feature. One way is to keep a stack of `AddressBook`s in memory. Each time a change is made to the `AddressBook`, push a copy of the current `AddressBook` onto the stack. When the user requests an undo, pop the top `AddressBook` from the stack and set it as the current `AddressBook`. This is a straightforward and relatively less error-prone way to implement undo. However, it has the following drawbacks:
+There are several ways to build an undo feature. One way is to keep a stack of `AddressBook`s in memory. Each time a change is made to the `AddressBook`, push a copy of the current `AddressBook` onto the stack. When the user requests an undo, pop the top `AddressBook` from the stack and set it as the current `AddressBook`. This is a straightforward and relatively less error-prone way to implement undo. However, it has the following drawbacks:
 * It requires a lot of memory to store multiple copies of the `AddressBook` object.
 * It is not efficient to copy the entire `AddressBook` object every time a change is made.
 
@@ -161,6 +161,12 @@ We build upon this idea, but instead of keeping a stack of `AddressBook`s, we ke
 
 Each `Command` defines its reverse operation during execution. When building the `CommandResult`, the `Command` also specifies the reverse command to be executed when the user requests an undo. This is kept track of by `LogicManager`, which maintains a stack of `Command`s. When the undo command is executed, `LogicManager` pops the top `Command` from the stack and executes it. The `Command` then executes its reverse operation on the `Model` to revert the changes made by the original command.
 
+The following sequence diagram shows how an undo operation goes through the `Logic` component, when used to undo a student addition.
+
+![Interactions Inside the Logic Component for the `undo` Command](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddStudentCommand`, `UndoCommand`, and `DeleteStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
