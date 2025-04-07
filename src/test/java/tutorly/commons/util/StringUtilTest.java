@@ -10,6 +10,41 @@ import org.junit.jupiter.api.Test;
 
 public class StringUtilTest {
 
+    //---------------- Tests for isParsableNonZeroUnsignedInteger --------------------------------------
+
+    @Test
+    public void isParsableNonZeroUnsignedInteger() {
+
+        // EP: empty strings
+        assertFalse(StringUtil.isParsableNonZeroUnsignedInteger("")); // Boundary value
+        assertFalse(StringUtil.isParsableNonZeroUnsignedInteger("  "));
+
+        // EP: not a number
+        assertFalse(StringUtil.isParsableNonZeroUnsignedInteger("a"));
+        assertFalse(StringUtil.isParsableNonZeroUnsignedInteger("aaa"));
+
+        // EP: zero
+        assertFalse(StringUtil.isParsableNonZeroUnsignedInteger("0"));
+
+        // EP: zero as prefix
+        assertTrue(StringUtil.isParsableNonZeroUnsignedInteger("01"));
+
+        // EP: signed numbers
+        assertFalse(StringUtil.isParsableNonZeroUnsignedInteger("-1"));
+        assertFalse(StringUtil.isParsableNonZeroUnsignedInteger("+1"));
+
+        // EP: numbers with white space
+        assertFalse(StringUtil.isParsableNonZeroUnsignedInteger(" 10 ")); // Leading/trailing spaces
+        assertFalse(StringUtil.isParsableNonZeroUnsignedInteger("1 0")); // Spaces in the middle
+
+        // EP: number larger than Integer.MAX_VALUE
+        assertFalse(StringUtil.isParsableNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
+
+        // EP: valid numbers, should return true
+        assertTrue(StringUtil.isParsableNonZeroUnsignedInteger("1")); // Boundary value
+        assertTrue(StringUtil.isParsableNonZeroUnsignedInteger("10"));
+    }
+
     //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
 
     @Test
@@ -27,7 +62,7 @@ public class StringUtilTest {
         assertFalse(StringUtil.isNonZeroUnsignedInteger("0"));
 
         // EP: zero as prefix
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("01"));
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("01"));
 
         // EP: signed numbers
         assertFalse(StringUtil.isNonZeroUnsignedInteger("-1"));
@@ -44,7 +79,6 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
-
 
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 

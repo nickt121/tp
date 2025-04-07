@@ -44,7 +44,7 @@ public class ParserUtilTest {
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
-    public void parseSessionIdentity_null_throwsNullPointerException() {
+    public void parseIdentity_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseIdentity(null));
     }
 
@@ -55,7 +55,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseSessionIdentity_validInput_success() throws Exception {
+    public void parseIdentity_validInput_success() throws Exception {
         // No whitespaces
         assertEquals(new Identity(new Name(VALID_NAME)), ParserUtil.parseIdentity(VALID_NAME));
         assertEquals(new Identity(1), ParserUtil.parseIdentity("1"));
@@ -66,6 +66,10 @@ public class ParserUtilTest {
         assertEquals(new Identity(1), ParserUtil.parseIdentity(WHITESPACE + 1 + WHITESPACE));
         assertEquals(new Identity(new Name("Bob Charlie")),
                 ParserUtil.parseIdentity(WHITESPACE + "Bob     Charlie" + WHITESPACE));
+
+        // Unknown ID
+        assertEquals(new Identity(Identity.UNKNOWN_ID),
+                ParserUtil.parseIdentity(Long.toString(Integer.MAX_VALUE + 1L)));
     }
 
     @Test
@@ -74,14 +78,12 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseId_invalidInput_throwsParseSessionException() {
+    public void parseSessionId_invalidInput_throwsParseSessionException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseSessionId("10 a"));
     }
 
     @Test
-    public void parseId_outOfRangeInput_throwsParseSessionException() {
-        assertThrows(ParseException.class, Session.MESSAGE_INVALID_ID, ()
-                -> ParserUtil.parseSessionId(Long.toString(Integer.MAX_VALUE + 1)));
+    public void parseSessionId_outOfRangeInput_throwsParseSessionException() {
         assertThrows(ParseException.class, Session.MESSAGE_INVALID_ID, () -> ParserUtil.parseSessionId("0"));
         assertThrows(ParseException.class, Session.MESSAGE_INVALID_ID, () -> ParserUtil.parseSessionId("-1"));
         assertThrows(ParseException.class, Session.MESSAGE_INVALID_ID, () -> ParserUtil.parseSessionId("1.1"));
@@ -94,6 +96,9 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(1, ParserUtil.parseSessionId("  1  "));
+
+        // Unknown ID
+        assertEquals(Session.UNKNOWN_ID, ParserUtil.parseSessionId(Long.toString(Integer.MAX_VALUE + 1L)));
     }
 
     @Test

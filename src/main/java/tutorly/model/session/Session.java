@@ -14,6 +14,7 @@ public class Session {
 
     public static final String MESSAGE_REASSIGNED_ID = "Session ID has already been set for this session.";
     public static final String MESSAGE_INVALID_ID = "Session ID must be a positive integer.";
+    public static final int UNKNOWN_ID = Integer.MAX_VALUE;
 
     private int id; // id field is effectively final
     private final Timeslot timeslot;
