@@ -246,6 +246,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. Tutor does not provide all compulsory fields.
     - 1a1. Tutorly prompts for the missing information.
+    - 1a2. Tutor enters the all the required details
     - Use case resumes at step 2.
 
 - 2a. Tutor provides invalid input for any field.
