@@ -94,7 +94,7 @@ Refer to the [Features](#features) below for details of each command.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Parameter summary
+### Parameter Summary
 
 | Parameter | Format                                                                                                                             | Constraint                                                                                                       | Length             | Example                          |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|--------------------|----------------------------------|
@@ -561,6 +561,7 @@ Furthermore, certain edits can cause the Tutorly to behave in unexpected ways (e
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+3. **For commands that should focus on a specific item in the window**, like after a `student add` or `session enrol`, the window may sometimes not scroll to the target item due to UI loading behaviour. The remedy is to run the `view` command again for the window to scroll to the target item.
 
 [Back to top :arrow_up:](#table-of-contents)
 
@@ -620,6 +621,7 @@ Planned features that will be added in the coming versions.
 2. Improved `search` command for `student` and `session` with other fields including **tags** and **date/time range** with control over matching **any** or **all** fields.
 3. `class` management commands that handles adding of **multiple** sessions and **mass** enrolling/marking of attendance for students.
 4. Viewing sessions each student is enrolled in via the `students` tab.
+5. Better auto scroll and focus on target item being updated in window.
 
 [Back to top :arrow_up:](#table-of-contents)
 
