@@ -1,5 +1,7 @@
 package tutorly.logic.parser;
 
+import static tutorly.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import tutorly.logic.commands.AddStudentCommand;
 import tutorly.logic.commands.Command;
 import tutorly.logic.commands.DeleteStudentCommand;
@@ -7,6 +9,7 @@ import tutorly.logic.commands.EditStudentCommand;
 import tutorly.logic.commands.ListStudentCommand;
 import tutorly.logic.commands.SearchStudentCommand;
 import tutorly.logic.commands.StudentCommand;
+import tutorly.logic.commands.ViewStudentCommand;
 import tutorly.logic.parser.exceptions.ParseException;
 
 /**
@@ -19,6 +22,9 @@ public class StudentCommandParser extends AddressBookParser {
         command = command.toLowerCase();
 
         switch (command) {
+        case ViewStudentCommand.COMMAND_WORD:
+            return new ViewStudentCommandParser().parse(args);
+
         case ListStudentCommand.COMMAND_WORD:
             return new ListStudentCommand();
 
@@ -35,17 +41,13 @@ public class StudentCommandParser extends AddressBookParser {
             return new SearchStudentCommandParser().parse(args);
 
         default:
-            return defaultCommand(command);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
     @Override
     protected Command defaultCommand() {
         return new StudentCommand();
-    }
-
-    private Command defaultCommand(String args) throws ParseException {
-        return new StudentCommand(ParserUtil.parseIdentity(args));
     }
 
 }
