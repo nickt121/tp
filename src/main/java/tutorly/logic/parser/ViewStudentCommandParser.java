@@ -7,13 +7,13 @@ import tutorly.logic.parser.exceptions.ParseException;
 import tutorly.model.person.Identity;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new ViewStudentCommand object
  */
 public class ViewStudentCommandParser implements Parser<ViewStudentCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ViewStudentCommand
+     * and returns a ViewStudentCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
