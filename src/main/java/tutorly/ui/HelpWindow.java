@@ -27,13 +27,12 @@ Command Summary:
 
     - Viewing tabs:
         - student: Switches to the students tab.
-        - student STUDENT_IDENTIFIER: Scrolls to the details of the specified student.
         - session: Switches to the sessions tab.
-        - session SESSION_ID: Shows the attendance for the specified session.
 
     - Student management:
         - student add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEMO] [t/TAG]…​: Adds a student.
         - student list: Lists all students.
+        - student view STUDENT_IDENTIFIER: Scrolls to the details of the specified student.
         - student edit STUDENT_IDENTIFIER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEMO] [t/TAG]…​ : \
 Edits a student's details.
         - student search [ses/SESSION_ID] [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]: Searches for students.
@@ -42,6 +41,7 @@ Edits a student's details.
     - Session management:
         - session add t/TIMESLOT sub/SUBJECT: Adds a session.
         - session list: Lists all sessions.
+        - session view SESSION_ID: Shows the attendance for the specified session.
         - session edit SESSION_ID [t/TIMESLOT] [sub/SUBJECT]: Edits a session's details.
         - session search [d/DATE] [sub/SUBJECT_KEYWORDS]: Searches for sessions.
         - session delete SESSION_ID: Deletes a session.

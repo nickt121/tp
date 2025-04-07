@@ -94,7 +94,7 @@ Refer to the [Features](#features) below for details of each command.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Parameter summary
+### Parameter Summary
 
 | Parameter | Format                                                                                                                             | Constraint                                                                                                       | Length             | Example                          |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|--------------------|----------------------------------|
@@ -173,8 +173,7 @@ After closing and re-opening the app, all previous commands will be forgotten an
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The main window will automatically switch to the tab which shows the results of the command that has been executed.
 
-Commands that update the data will also clear any filters from previous `search` commands to view what has been updated. 
-This [section](#undoing-a-command-undo) includes which commands will do so.
+Commands other than `search` will also clear any filters from previous `search` commands. 
 </div>
 
 #### Viewing students tab: `student`
@@ -185,39 +184,11 @@ Format: `student`
 
 [Back to top :arrow_up:](#table-of-contents)
 
-#### Viewing student card: `student STUDENT_IDENTIFIER`
-
-Scrolls to the details of the student with the specified [STUDENT_IDENTIFIER](#glossary) in the window of the student tab.
-
-Format: `student STUDENT_IDENTIFIER`
-
-Examples:
-* `student 1`
-* `student John Doe`
-
-Example output:
-
-![student id](images/StudentIdAfter.png)
-
-[Back to top :arrow_up:](#table-of-contents)
-
 #### Viewing sessions tab: `session`
 
 Shows the session tab in the main window.
 
 Format: `session`
-
-[Back to top :arrow_up:](#table-of-contents)
-
-#### Viewing attendance for a session: `session SESSION_ID`
-
-Shows the attendance of students for a given session.
-
-Format: `session SESSION_ID`
-
-Examples:
-* `session 1`
-* `session 5`
 
 [Back to top :arrow_up:](#table-of-contents)
 
@@ -262,6 +233,22 @@ Running the [undo](#undoing-a-command-undo) command after `student add` removes 
 Shows a list of all students.
 
 Format: `student list`
+
+[Back to top :arrow_up:](#table-of-contents)
+
+#### Viewing student card: `view`
+
+Scrolls to the details of the student with the specified [STUDENT_IDENTIFIER](#glossary) in the window of the student tab.
+
+Format: `student view STUDENT_IDENTIFIER`
+
+Examples:
+* `student view 1`
+* `student view John Doe`
+
+Example output:
+
+![student id](images/StudentViewAfter.png)
 
 [Back to top :arrow_up:](#table-of-contents)
 
@@ -366,6 +353,22 @@ Example output:
 Shows a list of all sessions.
 
 Format: `session list`
+
+[Back to top :arrow_up:](#table-of-contents)
+
+#### Viewing attendance for a session: `view`
+
+Shows the attendance of students for a given session.
+
+Format: `session view SESSION_ID`
+
+Examples:
+* `session view 1`
+* `session view 5`
+
+Example Output:
+
+![session view after](images/SessionViewAfter.png)
 
 [Back to top :arrow_up:](#table-of-contents)
 
@@ -561,6 +564,7 @@ Furthermore, certain edits can cause the Tutorly to behave in unexpected ways (e
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+3. **For commands that should focus on a specific item in the window**, like after a `student add` or `session enrol`, the window may sometimes not scroll to the target item due to UI loading behaviour. The remedy is to run the `view` command again for the window to scroll to the target item, or use the scrollbar in the tab.
 
 [Back to top :arrow_up:](#table-of-contents)
 
@@ -568,31 +572,31 @@ Furthermore, certain edits can cause the Tutorly to behave in unexpected ways (e
 
 ## Command summary
 
-| Context | Action                                                                  | Format                                                                                        | Examples                                               |
-|---------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------|
-| General | [Help](#viewing-help-help)                                              | `help`                                                                                        | -                                                      |
-|         | [Clear data](#clearing-all-data-clear)                                  | `clear`                                                                                       | -                                                      |
-|         | [Exit](#exiting-the-program-exit)                                       | `exit`                                                                                        | -                                                      |
-|         | [Undo command](#undoing-a-command-undo)                                 | `undo`                                                                                        | -                                                      |
-| Tab     | [Show students tab](#viewing-students-tab-student)                      | `student`                                                                                     | -                                                      |
-|         | [Show student card](#viewing-student-card-student-student_identifier)   | `student STUDENT_IDENTIFIER`                                                                  | `student 1` or `student John Doe`                      |
-|         | [Show session tab](#viewing-sessions-tab-session)                       | `session`                                                                                     | -                                                      |
-|         | [Show attendance](#viewing-attendance-for-a-session-session-session_id) | `session ID`                                                                                  | `session 4`                                            |
-| Student | [Add](#adding-a-student-add)                                            | `student add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEMO] [t/TAG]…​`                       | `student add n/John Doe p/98765432`                    |
-|         | [List](#listing-all-students-list)                                      | `student list`                                                                                | -                                                      |
-|         | [Edit](#editing-a-student-edit)                                         | `student edit STUDENT_IDENTIFIER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEMO] [t/TAG]…​` | `student edit 2 n/James Lee p/91234567`                |
-|         | [Search](#searching-for-students-search)                                | `student search [ses/SESSION_ID] [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]`                        | `student search n/alex dav p/9123 8765`                |
-|         | [Delete](#deleting-a-student-delete)                                    | `student delete STUDENT_IDENTIFIER`                                                           | `student delete 3`                                     |
-| Session | [Add](#adding-a-session-add)                                            | `session add t/TIMESLOT sub/SUBJECT`                                                          | `session add t/30 Mar 2025 11:30-13:30 sub/Math`       |
-|         | [List](#listing-all-sessions-list)                                      | `session list`                                                                                | -                                                      |
-|         | [Edit](#editing-a-session-edit)                                         | `session edit SESSION_ID [t/TIMESLOT] [sub/SUBJECT]`                                          | `session edit 2 t/11 Jun 2025 11:30-13:30 sub/English` |
-|         | [Search](#searching-for-sessions-search)                                | `session search [d/DATE] [sub/SUBJECT_KEYWORDS]`                                              | `session search d/2025-04-15 sub/Math Eng`             |
-|         | [Delete](#deleting-a-session-delete)                                    | `session delete SESSION_ID`                                                                   | `session delete 1`                                     |
-|         | [Enrol student](#enrolling-a-student-to-a-session-enrol)                | `session enrol STUDENT_IDENTIFIER ses/SESSION_ID`                                             | `session enrol 4 ses/3`                                |
-|         | [Unenrol student](#unenrolling-a-student-from-a-session-unenrol)        | `session unenrol STUDENT_IDENTIFIER ses/SESSION_ID`                                           | `session unenrol 4 ses/3`                              |
-|         | [Mark attendance](#marking-attendance-mark)                             | `session mark STUDENT_IDENTIFIER ses/SESSION_ID`                                              | `session mark John Doe ses/2`                          |
-|         | [Unmark attendance](#unmarking-attendance-unmark)                       | `session unmark STUDENT_IDENTIFIER ses/SESSION_ID`                                            | `session unmark 3 ses/2`                               |
-|         | [Add or Update feedback](#adding-or-updating-feedback-feedback)         | `session feedback STUDENT_IDENTIFIER ses/SESSION_ID f/FEEDBACK`                               | `session feedback 3 ses/2 f/Good Job!`                 |
+| Context | Action                                                           | Format                                                                                        | Examples                                               |
+|---------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------|
+| General | [Help](#viewing-help-help)                                       | `help`                                                                                        | -                                                      |
+|         | [Clear data](#clearing-all-data-clear)                           | `clear`                                                                                       | -                                                      |
+|         | [Exit](#exiting-the-program-exit)                                | `exit`                                                                                        | -                                                      |
+|         | [Undo command](#undoing-a-command-undo)                          | `undo`                                                                                        | -                                                      |
+| Tab     | [Show students tab](#viewing-students-tab-student)               | `student`                                                                                     | -                                                      |
+|         | [Show session tab](#viewing-sessions-tab-session)                | `session`                                                                                     | -                                                      |
+| Student | [Add](#adding-a-student-add)                                     | `student add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEMO] [t/TAG]…​`                       | `student add n/John Doe p/98765432`                    |
+|         | [List](#listing-all-students-list)                               | `student list`                                                                                | -                                                      |
+|         | [View card](#viewing-student-card-view)                          | `student view STUDENT_IDENTIFIER`                                                             | `student view 1` or `student view John Doe`            |
+|         | [Edit](#editing-a-student-edit)                                  | `student edit STUDENT_IDENTIFIER [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEMO] [t/TAG]…​` | `student edit 2 n/James Lee p/91234567`                |
+|         | [Search](#searching-for-students-search)                         | `student search [ses/SESSION_ID] [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]`                        | `student search n/alex dav p/9123 8765`                |
+|         | [Delete](#deleting-a-student-delete)                             | `student delete STUDENT_IDENTIFIER`                                                           | `student delete 3`                                     |
+| Session | [Add](#adding-a-session-add)                                     | `session add t/TIMESLOT sub/SUBJECT`                                                          | `session add t/30 Mar 2025 11:30-13:30 sub/Math`       |
+|         | [List](#listing-all-sessions-list)                               | `session list`                                                                                | -                                                      |
+|         | [View attendance](#viewing-attendance-for-a-session-view)        | `session view SESSION_ID`                                                                     | `session view 4`                                       |
+|         | [Edit](#editing-a-session-edit)                                  | `session edit SESSION_ID [t/TIMESLOT] [sub/SUBJECT]`                                          | `session edit 2 t/11 Jun 2025 11:30-13:30 sub/English` |
+|         | [Search](#searching-for-sessions-search)                         | `session search [d/DATE] [sub/SUBJECT_KEYWORDS]`                                              | `session search d/2025-04-15 sub/Math Eng`             |
+|         | [Delete](#deleting-a-session-delete)                             | `session delete SESSION_ID`                                                                   | `session delete 1`                                     |
+|         | [Enrol student](#enrolling-a-student-to-a-session-enrol)         | `session enrol STUDENT_IDENTIFIER ses/SESSION_ID`                                             | `session enrol 4 ses/3`                                |
+|         | [Unenrol student](#unenrolling-a-student-from-a-session-unenrol) | `session unenrol STUDENT_IDENTIFIER ses/SESSION_ID`                                           | `session unenrol 4 ses/3`                              |
+|         | [Mark attendance](#marking-attendance-mark)                      | `session mark STUDENT_IDENTIFIER ses/SESSION_ID`                                              | `session mark John Doe ses/2`                          |
+|         | [Unmark attendance](#unmarking-attendance-unmark)                | `session unmark STUDENT_IDENTIFIER ses/SESSION_ID`                                            | `session unmark 3 ses/2`                               |
+|         | [Add or Update feedback](#adding-or-updating-feedback-feedback)  | `session feedback STUDENT_IDENTIFIER ses/SESSION_ID f/FEEDBACK`                               | `session feedback 3 ses/2 f/Good Job!`                 |
 
 [Back to top :arrow_up:](#table-of-contents)
 
@@ -620,6 +624,7 @@ Planned features that will be added in the coming versions.
 2. Improved `search` command for `student` and `session` with other fields including **tags** and **date/time range** with control over matching **any** or **all** fields.
 3. `class` management commands that handles adding of **multiple** sessions and **mass** enrolling/marking of attendance for students.
 4. Viewing sessions each student is enrolled in via the `students` tab.
+5. Better auto scroll and focus on target item being updated in window.
 
 [Back to top :arrow_up:](#table-of-contents)
 
