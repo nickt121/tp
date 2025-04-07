@@ -56,7 +56,7 @@ public class EnrolSessionCommandTest {
         EnrolSessionCommand enrolSessionCommand = new EnrolSessionCommand(bensonIdentity, INVALID_ID);
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_INVALID_SESSION_ID, () -> enrolSessionCommand.execute(model));
+                Messages.MESSAGE_SESSION_NOT_FOUND, () -> enrolSessionCommand.execute(model));
     }
 
     @Test
