@@ -316,17 +316,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 3a. Tutor provides invalid input for any field.
-    - 3a1. Tutorly displays an appropriate error message.
-    - 3a2. Tutor corrects the input.
+- 2a. Tutor provides invalid input for any field.
+    - 2a1. Tutorly displays an appropriate error message.
+    - 2a2. Tutor corrects the input.
     - Use case resumes at step 2.
 
-- 4a. The student already exists (Same Name).
-    - 4a1. Tutorly displays an error message: “Student already exists.”
+- 2b. The student already exists (Same Name).
+    - 2b1. Tutorly displays an error message indicating the student already exists.
     - Use case ends.
 
-- 4b. Tutor does not provide all compulsorily required fields.
-    - 4b1. Tutorly prompts for the missing information.
+- 2c. Tutor does not provide all compulsory fields.
+    - 2c1. Tutorly prompts for the missing information.
     - Use case resumes at step 2.
 
 ---
@@ -344,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 3a. No students match the search query.
-    - 3a1. Tutorly displays: “0 students listed!”
+    - 3a1. Tutorly responds that no students match the search query.
     - Use case ends.
 
 ---
@@ -362,16 +362,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 2a. The student Identifier does not exist.
-    - 2a1. Tutorly displays an error message: “Student not found!”
+    - 2a1. Tutorly responds that the student does not exist.
     - Use case ends.
 
-- 3a. Tutor does not provide any update parameters.
-    - 3a1. Tutorly displays an error message: “At least one field to edit must be provided.”
+- 2b. Tutor does not provide any update parameters.
+    - 2b1. Tutorly displays an error message indicating that there must be at least one update parameter.
     - Use case ends.
 
-- 4a. Tutor provides invalid input for any field.
-    - 4a1. Tutorly displays an appropriate error message.
-    - 4a2. Tutor corrects the input.
+- 2c. Tutor provides invalid input for any field.
+    - 2c1. Tutorly displays an appropriate error message.
+    - 2c2. Tutor corrects the input.
     - Use case resumes at step 2.
 
 ---
@@ -389,7 +389,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 2a. The student Identifier does not exist.
-    - 2a1. Tutorly displays an error message: “Student not found!”
+    - 2a1. Tutorly displays an error message indicating the student does not exist.
     - Use case ends.
 
 ---
@@ -407,11 +407,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
 **Extensions**
 - 2a. The student ID does not exist.
-    - 2a1. Tutorly displays an error message: “Student not found!”
+    - 2a1. Tutorly displays an error message showing the student ID does not exist.
     - Use case ends.
 
 - 2b. The Session ID does not exist. 
-    - 2b1. Tutorly displays an error message: “The session ID provided is invalid”
+    - 2b1. Tutorly displays an error message showing the session ID does not exist.
     - Use case ends.
 
 - 3a. The student is not enrolled in the session.
