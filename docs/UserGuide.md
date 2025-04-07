@@ -173,8 +173,7 @@ After closing and re-opening the app, all previous commands will be forgotten an
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The main window will automatically switch to the tab which shows the results of the command that has been executed.
 
-Commands that update the data will also clear any filters from previous `search` commands to view what has been updated. 
-This [section](#undoing-a-command-undo) includes which commands will do so.
+Commands other than `search` will also clear any filters from previous `search` commands. 
 </div>
 
 #### Viewing students tab: `student`
@@ -249,7 +248,7 @@ Examples:
 
 Example output:
 
-![student id](images/StudentIdAfter.png)
+![student id](images/StudentViewAfter.png)
 
 [Back to top :arrow_up:](#table-of-contents)
 
@@ -366,6 +365,10 @@ Format: `session view SESSION_ID`
 Examples:
 * `session view 1`
 * `session view 5`
+
+Example Output:
+
+![session view after](images/SessionViewAfter.png)
 
 [Back to top :arrow_up:](#table-of-contents)
 
@@ -561,7 +564,7 @@ Furthermore, certain edits can cause the Tutorly to behave in unexpected ways (e
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-3. **For commands that should focus on a specific item in the window**, like after a `student add` or `session enrol`, the window may sometimes not scroll to the target item due to UI loading behaviour. The remedy is to run the `view` command again for the window to scroll to the target item.
+3. **For commands that should focus on a specific item in the window**, like after a `student add` or `session enrol`, the window may sometimes not scroll to the target item due to UI loading behaviour. The remedy is to run the `view` command again for the window to scroll to the target item, or use the scrollbar in the tab.
 
 [Back to top :arrow_up:](#table-of-contents)
 
