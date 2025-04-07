@@ -52,7 +52,7 @@
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-               <TabPane fx:id="tabPane" prefWidth="340.0" tabClosingPolicy="UNAVAILABLE">
+               <TabPane fx:id="tabPane" prefWidth="340.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                  <tabs>
                    <Tab text="Students">
                      <content>
