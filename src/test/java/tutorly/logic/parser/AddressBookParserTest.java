@@ -93,13 +93,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_student() throws Exception {
         assertTrue(parser.parse(StudentCommand.COMMAND_WORD) instanceof StudentCommand);
-        assertTrue(parser.parse(StudentCommand.COMMAND_WORD + " 3") instanceof StudentCommand);
     }
 
     @Test
     public void parseCommand_session() throws Exception {
         assertTrue(parser.parse(SessionCommand.COMMAND_WORD) instanceof SessionCommand);
-        assertTrue(parser.parse(SessionCommand.COMMAND_WORD + " 3") instanceof SessionCommand);
     }
 
     @Test
