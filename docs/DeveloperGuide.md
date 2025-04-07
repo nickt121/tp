@@ -537,3 +537,4 @@ These instructions provide a starting point for testers to work on; testers are 
 2. Improved `search` command for `student` and `session` with other fields including **tags** and **date/time range** with control over matching **any** or **all** fields.
 3. `class` management commands that handles adding of **multiple** sessions and **mass** enrolling/marking of attendance for students.
 4. Viewing sessions each student is enrolled in via the `students` tab.
+5. Add support for multiple students of the same name.
