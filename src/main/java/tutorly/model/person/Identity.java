@@ -13,6 +13,7 @@ public class Identity {
     public static final String MESSAGE_INVALID_IDENTITY =
             "STUDENT_IDENTIFIER provided is not a valid student ID or name.";
     public static final String MESSAGE_INVALID_ID = "Student ID must be a positive integer.";
+    public static final int UNKNOWN_ID = Integer.MAX_VALUE;
 
     private int id;
     private Name name;

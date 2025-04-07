@@ -80,8 +80,6 @@ public class ParserUtilTest {
 
     @Test
     public void parseId_outOfRangeInput_throwsParseSessionException() {
-        assertThrows(ParseException.class, Session.MESSAGE_INVALID_ID, ()
-                -> ParserUtil.parseSessionId(Long.toString(Integer.MAX_VALUE + 1)));
         assertThrows(ParseException.class, Session.MESSAGE_INVALID_ID, () -> ParserUtil.parseSessionId("0"));
         assertThrows(ParseException.class, Session.MESSAGE_INVALID_ID, () -> ParserUtil.parseSessionId("-1"));
         assertThrows(ParseException.class, Session.MESSAGE_INVALID_ID, () -> ParserUtil.parseSessionId("1.1"));
