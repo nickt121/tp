@@ -1,8 +1,6 @@
 package tutorly.logic.commands;
 
-import static tutorly.logic.commands.CommandTestUtil.assertCommandFailure;
 import static tutorly.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tutorly.testutil.TypicalAddressBook.ALICE;
 import static tutorly.testutil.TypicalAddressBook.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +9,6 @@ import tutorly.logic.Messages;
 import tutorly.model.Model;
 import tutorly.model.ModelManager;
 import tutorly.model.UserPrefs;
-import tutorly.model.person.Identity;
 import tutorly.ui.Tab;
 
 public class StudentCommandTest {
@@ -25,21 +22,6 @@ public class StudentCommandTest {
                 .withTab(Tab.student())
                 .build();
         assertCommandSuccess(new StudentCommand(), model, expectedCommandResult, expectedModel);
-    }
-
-    @Test
-    public void execute_validIdentity_success() {
-        StudentCommand studentCommand = new StudentCommand(new Identity(ALICE.getId()));
-        CommandResult expectedCommandResult = new CommandResult.Builder(String.format(Messages.MESSAGE_PERSON_SHOWN,
-                Messages.format(ALICE)))
-                .withTab(Tab.student(ALICE))
-                .build();
-        assertCommandSuccess(studentCommand, model, expectedCommandResult, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIdentity_throwsCommandException() {
-        assertCommandFailure(new StudentCommand(new Identity(999)), model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
 
 }
