@@ -533,7 +533,7 @@ These instructions provide a starting point for testers to work on; testers are 
 
 ## **Appendix: Planned Enhancements**
 
-1. Enhance undo functionality for the add command to maintain consistent ID assignment and prevent ID from incrementing.
+1. Enhance undo functionality for the add command to allow for rollback of assigned IDs.
 2. Improve the output display to seamlessly present long messages without requiring scrolling.
 3. Refine cell selection behavior in the UI to reduce flickering and improve responsiveness.
 4. Optimize the list view so it dynamically adjusts its height in response to changes in the filtered item count.
