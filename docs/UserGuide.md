@@ -626,6 +626,7 @@ Planned features that will be added in the coming versions.
 4. Viewing sessions each student is enrolled in via the `students` tab.
 5. Add support for multiple students of the same name.
 6. Better auto scroll and focus on target item being updated in window.
+7. Seamlessly present long messages without requiring scrolling.
 
 [Back to top :arrow_up:](#table-of-contents)
 
