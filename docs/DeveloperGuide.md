@@ -533,7 +533,14 @@ These instructions provide a starting point for testers to work on; testers are 
 
 ## **Appendix: Planned Enhancements**
 
-1. A `redo` command to undo an `undo` command.
-2. Improved `search` command for `student` and `session` with other fields including **tags** and **date/time range** with control over matching **any** or **all** fields.
-3. `class` management commands that handles adding of **multiple** sessions and **mass** enrolling/marking of attendance for students.
-4. Viewing sessions each student is enrolled in via the `students` tab.
+1. Enhance undo functionality for the add command to allow for rollback of assigned IDs.
+2. Improve the output display to seamlessly present long messages without requiring scrolling.
+3. Refine cell selection behavior in the UI to reduce flickering and improve responsiveness.
+4. Optimize the list view so it dynamically adjusts its height in response to changes in the filtered item count.
+5. Enhance the UI focus management to ensure that the correct item is consistently highlighted.
+6. Add support for multiple students of the same name.
+7. A `redo` command to undo an `undo` command.
+8. Improved `search` command for `student` and `session` with other fields including **tags** and **date/time range** with control over matching **any** or **all** fields.
+9. `class` management commands that handle adding of **multiple** sessions and **mass** enrolling/marking of attendance for students.
+10. Viewing sessions each student is enrolled in via the `students` tab.
+

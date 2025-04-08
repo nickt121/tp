@@ -624,7 +624,9 @@ Planned features that will be added in the coming versions.
 2. Improved `search` command for `student` and `session` with other fields including **tags** and **date/time range** with control over matching **any** or **all** fields.
 3. `class` management commands that handles adding of **multiple** sessions and **mass** enrolling/marking of attendance for students.
 4. Viewing sessions each student is enrolled in via the `students` tab.
-5. Better auto scroll and focus on target item being updated in window.
+5. Add support for multiple students of the same name.
+6. Better auto scroll and focus on target item being updated in window.
+7. Seamlessly present long messages without requiring scrolling.
 
 [Back to top :arrow_up:](#table-of-contents)
 
